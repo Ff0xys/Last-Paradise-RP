@@ -27,9 +27,20 @@ const playlist = [
     "https://files.catbox.moe/cndtub.mp3",
     "https://files.catbox.moe/u1gdus.mp3"
 ];
+
+// Liens des photos V1 pour la Galerie
+const photosV1 = [
+    "https://files.catbox.moe/whueq5.png",
+    "https://files.catbox.moe/su6qae.png",
+    "https://files.catbox.moe/h8edtb.png",
+    "https://files.catbox.moe/n5w76z.png",
+    "https://files.catbox.moe/8ttd47.png",
+    "https://files.catbox.moe/kvfyy2.png"
+];
+
 let currentTrackIndex = 0;
 
-// --- LOGIQUE MUSIQUE (CORRIGÉE ET EXPORTÉE) ---
+// --- LOGIQUE MUSIQUE ---
 const music = document.getElementById('bgMusic');
 const musicIcon = document.getElementById('music-icon');
 const slider = document.getElementById('volumeSlider');
@@ -180,67 +191,24 @@ const pageData = {
     `,
     paradise: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">REJOINDRE LAST PARADISE</h2>
-        
-        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto; font-family: 'Rajdhani', sans-serif;">
-            
+        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto;">
             <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5;">
-                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;">
-                    <strong style="color: #46a5e5;">1.</strong> Veuillez posséder <strong>Grand Theft Auto V</strong> (version originale) sur PC.
-                </p>
+                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;"><strong>1.</strong> Posséder GTA V original sur PC.</p>
             </div>
-
             <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5;">
-                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;">
-                    <strong style="color: #46a5e5;">2.</strong> Téléchargez <a href="https://fivem.net" target="_blank" style="color: #46a5e5; text-decoration: underline; font-weight: bold;">FiveM</a> et installez-le.
-                </p>
+                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;"><strong>2.</strong> Installer FiveM.</p>
             </div>
-
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5;">
-                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;">
-                    <strong style="color: #46a5e5;">3.</strong> Ouvrez FiveM et configurez-le avec votre jeu GTA V.
-                </p>
-            </div>
-
-            <div style="margin-top: 10px; text-align: center;">
-                <p style="color: #fff; font-size: 18px; margin-bottom: 15px;">
-                    <strong style="color: #46a5e5;">4.</strong> Appuyez sur <kbd style="background: #333; padding: 2px 6px; border-radius: 4px;">F8</kbd> et <strong>cliquez ci-dessous</strong> pour copier :
-                </p>
-                
-                <div onclick="navigator.clipboard.writeText('connect lastparadise.fr'); alert('Adresse copiée ! Faites CTRL+V dans votre console F8.');" 
-                     style="background: #000; padding: 20px; border-radius: 8px; border: 2px solid #46a5e5; display: inline-block; width: 100%; box-sizing: border-box; box-shadow: 0 0 15px rgba(70, 165, 229, 0.4); cursor: pointer; transition: 0.3s;"
-                     onmouseover="this.style.background='#111'; this.style.transform='scale(1.02)';"
-                     onmouseout="this.style.background='#000'; this.style.transform='scale(1)';">
-                    <code style="color: #46a5e5; font-size: 24px; font-weight: bold; letter-spacing: 2px;">connect lastparadise.fr</code>
-                    <p style="color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 5px; text-transform: uppercase;">Cliquer pour copier l'adresse</p>
-                </div>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5; margin-top: 10px;">
-                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;">
-                    <strong style="color: #46a5e5;">5.</strong> Faites <span style="color: #46a5e5;">CTRL+V</span>, appuyez sur <strong>ENTRÉE</strong>, puis refermez avec <kbd style="background: #333; padding: 2px 6px; border-radius: 4px;">F8</kbd>.
-                </p>
+            <div onclick="navigator.clipboard.writeText('connect lastparadise.fr'); alert('Adresse copiée !');" style="background: #000; padding: 20px; border-radius: 8px; border: 2px solid #46a5e5; text-align: center; cursor: pointer;">
+                <code style="color: #46a5e5; font-size: 24px; font-weight: bold;">connect lastparadise.fr</code>
+                <p style="color: white; font-size: 12px; margin-top: 5px;">CLIQUEZ POUR COPIER (F8 ensuite)</p>
             </div>
         </div>
     `,
     staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
     streams: `<h2>DIFFUSIONS EN DIRECT</h2><div id="stream-list"></div>`,
-    galerie: `<h2>GALERIE DE LA VILLE</h2><p style="text-align:center;">Bientôt disponible...</p>`,
+    galerie: `<h2>ARCHIVES LAST PARADISE V1 (2024)</h2><div id="galerie-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 20px 0;"></div>`,
     event: `<h2>ÉVÉNEMENTS À VENIR</h2><p style="text-align:center;">Aucun événement prévu pour le moment.</p>`
 };
-
-// --- CSS DYNAMIQUE ---
-const styleSheet = document.createElement("style");
-styleSheet.innerHTML = `
-    .list-item-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 5px solid; margin-bottom: 10px; font-family: 'Rajdhani'; }
-    .text-info { display: flex; flex-direction: column; gap: 4px; }
-    .text-info strong { color: white; font-size: 18px; text-transform: uppercase; }
-    .text-info span { color: rgba(255,255,255,0.6); font-size: 14px; }
-    .action-btn { color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 13px; text-align: center; min-width: 100px; cursor: pointer; }
-    .action-btn:hover { filter: brightness(1.2); transform: scale(1.05); }
-    .key-item { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-family: 'Rajdhani'; }
-    .key-item kbd { background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
-`;
-document.head.appendChild(styleSheet);
 
 // --- LOGIQUE D'AFFICHAGE ---
 window.openView = function(id) {
@@ -250,9 +218,23 @@ window.openView = function(id) {
     content.innerHTML = pageData[id];
     viewer.style.display = 'block';
 
+    if (id === 'galerie') {
+        const container = document.getElementById('galerie-container');
+        container.innerHTML = ""; // Sécurité pour vider le container
+        photosV1.forEach((url, index) => {
+            const item = document.createElement('div');
+            item.style = "border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s;";
+            item.onclick = () => openLightbox(url); // Ajout de l'événement plein écran
+            item.innerHTML = `
+                <img src="${url}" style="width: 100%; height: 180px; object-fit: cover; display: block;">
+                <div style="background: rgba(0,0,0,0.5); padding: 5px; text-align: center; font-size: 12px; color: #46a5e5;">SOUVENIR V1 #${index + 1}</div>
+            `;
+            container.appendChild(item);
+        });
+    }
+
     if (id === 'staff') {
         const container = document.getElementById('roles-container');
-        container.innerHTML = "";
         serverRoles.forEach(roleName => {
             const roleId = roleName.replace(/\s/g, '');
             const member = staffMembers.find(m => m.highestRole === roleName);
@@ -273,7 +255,6 @@ window.openView = function(id) {
 
     if (id === 'streams') {
         const list = document.getElementById('stream-list');
-        list.innerHTML = ""; 
         const searchInput = document.createElement('input');
         searchInput.type = 'text';
         searchInput.placeholder = 'Rechercher un streamer...';
@@ -293,6 +274,16 @@ window.openView = function(id) {
         render();
     }
 }
+
+// --- LOGIQUE PLEIN ÉCRAN (LIGHTBOX) ---
+window.openLightbox = function(url) {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    if (lb && lbImg) {
+        lbImg.src = url;
+        lb.style.display = 'flex';
+    }
+};
 
 window.togglePseudo = function(id) { const el = document.getElementById('pseudo-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'block' : 'none'; }
 window.toggleSubRoles = function(id) { const el = document.getElementById('subroles-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'flex' : 'none'; }
