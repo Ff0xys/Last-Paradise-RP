@@ -29,12 +29,22 @@ const playlist = [
 ];
 let currentTrackIndex = 0;
 
-// Liens Google Docs
+// Liens Externes
 const rulesLinks = {
     serveur: "https://docs.google.com/document/d/1VKb4eJfoqYuEnPFZy3VIKV6PoWm3KQioFci5E1cw3Xw/edit?usp=sharing",
     sasp: "https://docs.google.com/document/d/1crPjZrpPJnh5xr65boi8iLPaJLq72QiKrjugdM4gBss/edit?usp=sharing",
     samr: "https://docs.google.com/document/d/1NX0qZMNN1z72jVv1H4CBPrSq-J1vq3TbG86GYse2ROM/edit?usp=sharing",
     illegal: "https://docs.google.com/document/d/14vTxocrhfBv-ysWS7h1hYzh0L5YHVKH1nb5oeo1sj_Y/edit?usp=sharing"
+};
+
+const discordLinks = {
+    general: "https://discord.gg/WcenP4vcjY",
+    illegal: "https://discord.gg/YHCWdwgvk7",
+    sasp: "https://discord.gg/bWyGBhChUX",
+    gouv: "https://discord.gg/wxnurk5ZG7",
+    samr: "https://discord.gg/XHQrEpKBTH",
+    immo: "https://discord.gg/cbtWQpqXVj",
+    pdm: "https://discord.gg/2BXxf5fjTy"
 };
 
 const pageData = {
@@ -79,46 +89,33 @@ const pageData = {
     `,
     rules: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">RÈGLEMENTS DE LA CITÉ</h2>
-        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 700px; margin: 0 auto;">
-            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #46a5e5;">
-                <div style="display: flex; flex-direction: column; gap: 4px;">
-                    <span style="color: #46a5e5; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT GÉNÉRAL</span>
-                    <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Bases fondamentales du serveur</span>
-                </div>
-                <a href="${rulesLinks.serveur}" target="_blank" style="background: #46a5e5; color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;">Lire le doc</a>
+        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto;">
+            <div class="list-item-row" style="border-color: #46a5e5;">
+                <div class="text-info"><strong>RÈGLEMENT GÉNÉRAL</strong><span>Bases fondamentales</span></div>
+                <a href="${rulesLinks.serveur}" target="_blank" class="action-btn" style="background: #46a5e5;">LIRE LE DOC</a>
             </div>
-            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #2980b9;">
-                <div style="display: flex; flex-direction: column; gap: 4px;">
-                    <span style="color: #2980b9; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT SASP</span>
-                    <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Code de conduite des forces de l'ordre</span>
-                </div>
-                <a href="${rulesLinks.sasp}" target="_blank" style="background: #2980b9; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;">Lire le doc</a>
+            <div class="list-item-row" style="border-color: #2980b9;">
+                <div class="text-info"><strong>RÈGLEMENT SASP</strong><span>Forces de l'ordre</span></div>
+                <a href="${rulesLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9;">LIRE LE DOC</a>
             </div>
-            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #e74c3c;">
-                <div style="display: flex; flex-direction: column; gap: 4px;">
-                    <span style="color: #e74c3c; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT SAMR</span>
-                    <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Protocoles médicaux et secours</span>
-                </div>
-                <a href="${rulesLinks.samr}" target="_blank" style="background: #e74c3c; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;">Lire le doc</a>
+            <div class="list-item-row" style="border-color: #e74c3c;">
+                <div class="text-info"><strong>RÈGLEMENT SAMR</strong><span>Santé et Secours</span></div>
+                <a href="${rulesLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c;">LIRE LE DOC</a>
             </div>
-            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #9370DB;">
-                <div style="display: flex; flex-direction: column; gap: 4px;">
-                    <span style="color: #9370DB; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT ILLÉGAL</span>
-                    <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Activités et groupes criminels</span>
-                </div>
-                <a href="${rulesLinks.illegal}" target="_blank" style="background: #9370DB; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;">Lire le doc</a>
+            <div class="list-item-row" style="border-color: #9370DB;">
+                <div class="text-info"><strong>RÈGLEMENT ILLÉGAL</strong><span>Groupes criminels</span></div>
+                <a href="${rulesLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB;">LIRE LE DOC</a>
             </div>
         </div>
     `,
     keys: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">TOUCHES DU SERVEUR</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto; font-family: 'Rajdhani';">
-            
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto;">
             <div style="display: flex; flex-direction: column; gap: 8px;">
-                <div class="key-item"><span>Se cacher</span><kbd>A</kbd></div>
+                <div class="key-item"><span>Se cacher / Discrétion</span><kbd>A</kbd></div>
                 <div class="key-item"><span>Pointer / Ceinture</span><kbd>B</kbd></div>
                 <div class="key-item"><span>Champs de vision</span><kbd>C</kbd></div>
-                <div class="key-item"><span>S'asseoir</span><kbd>E</kbd></div>
+                <div class="key-item"><span>S'asseoir / Interaction</span><kbd>E</kbd></div>
                 <div class="key-item"><span>Croiser les bras</span><kbd>H</kbd></div>
                 <div class="key-item"><span>Tête / Boîte à gants</span><kbd>K</kbd></div>
                 <div class="key-item"><span>Menu ESC</span><kbd>P</kbd></div>
@@ -128,7 +125,6 @@ const pageData = {
                 <div class="key-item"><span>Lever bras / Stop Anim</span><kbd>X</kbd></div>
                 <div class="key-item"><span>Tomber / Se relever</span><kbd>Y</kbd></div>
             </div>
-
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <div class="key-item"><span>Téléphone</span><kbd>F1</kbd></div>
                 <div class="key-item"><span>Menu Animations</span><kbd>F3</kbd></div>
@@ -143,17 +139,43 @@ const pageData = {
                 <div class="key-item"><span>Raccourcis Inventaire</span><kbd>1-5</kbd></div>
             </div>
         </div>
-        <style>
-            .key-item { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center; }
-            .key-item kbd { background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; min-width: 30px; text-align: center; }
-        </style>
+    `,
+    paradise: `
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">NOS DISCORDS</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto;">
+            <a href="${discordLinks.general}" target="_blank" class="discord-card" style="border-left: 5px solid #5865F2;"><span>🌐</span> <strong>Général</strong></a>
+            <a href="${discordLinks.illegal}" target="_blank" class="discord-card" style="border-left: 5px solid #9370DB;"><span>🎭</span> <strong>Illégal</strong></a>
+            <a href="${discordLinks.sasp}" target="_blank" class="discord-card" style="border-left: 5px solid #2980b9;"><span>🚔</span> <strong>SASP</strong></a>
+            <a href="${discordLinks.gouv}" target="_blank" class="discord-card" style="border-left: 5px solid #f1c40f;"><span>🏛️</span> <strong>Gouvernement</strong></a>
+            <a href="${discordLinks.samr}" target="_blank" class="discord-card" style="border-left: 5px solid #e74c3c;"><span>🚑</span> <strong>SAMR</strong></a>
+            <a href="${discordLinks.immo}" target="_blank" class="discord-card" style="border-left: 5px solid #2ecc71;"><span>🏠</span> <strong>Agence Immo</strong></a>
+            <a href="${discordLinks.pdm}" target="_blank" class="discord-card" style="border-left: 5px solid #e67e22;"><span>🏎️</span> <strong>Motorsport (PDM)</strong></a>
+        </div>
+        <div style="text-align: center; margin-top: 40px; padding: 20px; border: 1px dashed #46a5e5; border-radius: 10px; background: rgba(0,0,0,0.5);">
+            <h3 style="color:#46a5e5; margin-bottom: 10px;">REJOINDRE LE SERVEUR</h3>
+            <p>F8 > <code>connect lastparadise.fr</code></p>
+        </div>
     `,
     staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
     streams: `<h2>DIFFUSIONS EN DIRECT</h2><div id="stream-list"></div>`,
-    paradise: `<h2>REJOINDRE LA CITÉ</h2><div style="text-align: center;"><p>Appuyez sur F8 et collez :</p><br><code style="background: #000; padding: 15px; color: #46a5e5; border-radius: 5px; font-size: 20px; border: 1px solid #46a5e5;">connect lastparadise.fr</code></div>`,
     galerie: `<h2>GALERIE DE LA VILLE</h2><p style="text-align:center;">Bientôt disponible...</p>`,
     event: `<h2>ÉVÉNEMENTS À VENIR</h2><p style="text-align:center;">Aucun événement prévu pour le moment.</p>`
 };
+
+// --- CSS DYNAMIQUE ---
+const styleSheet = document.createElement("style");
+styleSheet.innerHTML = `
+    .list-item-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 5px solid; margin-bottom: 10px; }
+    .text-info { display: flex; flex-direction: column; gap: 4px; }
+    .text-info strong { color: white; font-size: 18px; }
+    .text-info span { color: rgba(255,255,255,0.6); font-size: 14px; }
+    .action-btn { color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 13px; }
+    .key-item { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+    .key-item kbd { background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+    .discord-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; text-decoration: none; color: white; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
+    .discord-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.1); }
+`;
+document.head.appendChild(styleSheet);
 
 // --- LOGIQUE D'AFFICHAGE ---
 function openView(id) {
@@ -190,7 +212,7 @@ function openView(id) {
         const searchInput = document.createElement('input');
         searchInput.type = 'text';
         searchInput.placeholder = 'Rechercher un streamer...';
-        searchInput.style = "width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #46a5e5; background: rgba(0,0,0,0.6); color: white; font-family: 'Rajdhani';";
+        searchInput.style = "width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #46a5e5; background: rgba(0,0,0,0.6); color: white;";
         const resContainer = document.createElement('div');
         list.appendChild(searchInput); list.appendChild(resContainer);
 
@@ -198,14 +220,7 @@ function openView(id) {
             resContainer.innerHTML = "";
             [...streamerData].sort((a,b)=>a.streamer.localeCompare(b.streamer)).forEach(s => {
                 if (s.streamer.toLowerCase().includes(f.toLowerCase()) || s.character.toLowerCase().includes(f.toLowerCase())) {
-                    resContainer.innerHTML += `
-                        <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 1px solid rgba(70, 165, 229, 0.2);">
-                            <div style="display: flex; flex-direction: column; gap: 4px;">
-                                <span style="color: #46a5e5; font-weight: bold; font-size: 18px; text-transform: uppercase;">${s.streamer}</span>
-                                <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Incarne : ${s.character}</span>
-                            </div>
-                            <a href="${s.url}" target="_blank" style="background: #6441a5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s;">TWITCH</a>
-                        </div>`;
+                    resContainer.innerHTML += `<div class="list-item-row" style="border-color: #6441a5;"><div class="text-info"><strong>${s.streamer}</strong><span>Incarne : ${s.character}</span></div><a href="${s.url}" target="_blank" class="action-btn" style="background: #6441a5;">TWITCH</a></div>`;
                 }
             });
         };
@@ -222,7 +237,6 @@ function closeView() { document.getElementById('viewer').style.display = 'none';
 const music = document.getElementById('bgMusic');
 const musicIcon = document.getElementById('music-icon');
 const slider = document.getElementById('volumeSlider');
-
 function loadTrack(index) { if (music) { music.src = playlist[index]; music.load(); } }
 function toggleMusic() {
     if (!music) return;
