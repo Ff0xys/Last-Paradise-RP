@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Last Paradise RP</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
 <main class="home">
     <div class="ac">
         <div style="display: flex; align-items: center; gap: 10px;">
@@ -27,7 +17,7 @@
     </audio>
 
     <div class="grid">
-        <a href="#" class="tile" onclick="openView('paradise')" style="--i:0;">
+        <a href="#" class="tile" onclick="openView('paradise')">
             <div class="tile__bg" style="background-image: url('https://media.discordapp.net/attachments/1384136733162999808/1454354783875104933/image.png')"></div>
             <div class="tile__content">
                 <div class="tile__status">
@@ -39,16 +29,14 @@
             </div>
         </a>
 
-        <a href="#" class="tile" onclick="openView('lore')" style="--i:1;"><div class="tile__content"><span class="tile__label">Lore</span><p class="tile__sub">Histoire de la Ville</p></div></a>
-        <a href="#" class="tile" onclick="openView('rules')" style="--i:2;"><div class="tile__content"><span class="tile__label">Règlement</span><p class="tile__sub">Lois & Règles du RP</p></div></a>
-        <a href="#" class="tile" onclick="openView('galerie')" style="--i:3;"><div class="tile__content"><span class="tile__label">Galerie</span><p class="tile__sub">Souvenirs de la cité</p></div></a>
-        <a href="#" class="tile" onclick="openView('streams')" style="--i:4;"><div class="tile__content"><span class="tile__label">Streams</span><p class="tile__sub">En Direct sur Twitch</p></div></a>
-        <a href="#" class="tile" onclick="openView('event')" style="--i:5;"><div class="tile__content"><span class="tile__label">Événements</span><p class="tile__sub">Agenda de la ville</p></div></a>
-        <a href="#" class="tile" onclick="openView('keys')" style="--i:6;"><div class="tile__content"><span class="tile__label">Commandes Ig</span><p class="tile__sub">Configuration Clavier</p></div></a>
-        
-        <a href="#" class="tile" onclick="openView('discord')" style="--i:7;"><div class="tile__content"><span class="tile__label">Discord</span><p class="tile__sub">Rejoindre la Communauté</p></div></a>
-        
-        <a href="#" class="tile" onclick="openView('staff')" style="--i:8;"><div class="tile__content"><span class="tile__label">Staff</span><p class="tile__sub">L'Équipe du Serveur</p></div></a>
+        <a href="#" class="tile" onclick="openView('lore')"><div class="tile__content"><span class="tile__label">Lore</span><p class="tile__sub">Histoire de la Ville</p></div></a>
+        <a href="#" class="tile" onclick="openView('rules')"><div class="tile__content"><span class="tile__label">Règlement</span><p class="tile__sub">Lois & Règles du RP</p></div></a>
+        <a href="#" class="tile" onclick="openView('galerie')"><div class="tile__content"><span class="tile__label">Galerie</span><p class="tile__sub">Souvenirs de la cité</p></div></a>
+        <a href="#" class="tile" onclick="openView('streams')"><div class="tile__content"><span class="tile__label">Streams</span><p class="tile__sub">En Direct sur Twitch</p></div></a>
+        <a href="#" class="tile" onclick="openView('event')"><div class="tile__content"><span class="tile__label">Événements</span><p class="tile__sub">Agenda de la ville</p></div></a>
+        <a href="#" class="tile" onclick="openView('keys')"><div class="tile__content"><span class="tile__label">Commandes Ig</span><p class="tile__sub">Configuration Clavier</p></div></a>
+        <a href="#" class="tile" onclick="openView('discord')"><div class="tile__content"><span class="tile__label">Discord</span><p class="tile__sub">Rejoindre la Communauté</p></div></a>
+        <a href="#" class="tile" onclick="openView('staff')"><div class="tile__content"><span class="tile__label">Staff</span><p class="tile__sub">L'Équipe du Serveur</p></div></a>
     </div>
 
     <div id="viewer" class="viewer" style="display: none;">
@@ -63,8 +51,3 @@
         <span class="footer__copy">© 2026 Last Legacy Studio — Lyx_tv</span>
     </footer>
 </main>
-
-<script src="script.js?v=1.1"></script>
-
-</body>
-</html>
