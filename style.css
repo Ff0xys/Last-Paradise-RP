@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root { 
+    --accent: #46a5e5; 
+    --bg-overlay: rgba(0, 0, 0, 0.7); 
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    background: url('https://i.postimg.cc/Y0sxrY20/Gemini-Generated-Image-d75xq0d75xq0d75x-(1).png') no-repeat;
+    background-position: center 30%; 
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff; 
+    font-family: 'Rajdhani', sans-serif; 
+    overflow: hidden;
+}
+
+.home {
+    background: var(--bg-overlay);
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+}
+
+.grid { 
+    flex: 1;
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(3, 1fr); 
+    gap: 15px; 
+    padding: 20px;
+}
+
+/* --- TUILES --- */
+.tile { 
+    position: relative; 
+    display: flex; 
+    align-items: flex-end; 
+    background: var(--glass);
+    border: 1px solid var(--glass-border); 
+    text-decoration: none; 
+    overflow: hidden; 
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    border-radius: 15px;
+}
+
+.tile:hover { 
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(70, 165, 229, 0.2);
+}
+
+.tile__bg { 
+    position: absolute; 
+    inset: 0; 
+    background-size: cover; 
+    background-position: center; 
+    filter: brightness(0.4) saturate(0.8); 
+    transition: 0.6s; 
+}
+
+.tile:hover .tile__bg { filter: brightness(0.6) saturate(1.1); }
+
+.tile__content { 
+    padding: 35px; 
+    position: relative; 
+    z-index: 2; 
+    width: 100%; 
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+}
+
+.tile__label { 
+    display: block; 
+    font-family: 'Bebas Neue'; 
+    font-size: 50px; 
+    color: var(--accent); 
+    text-shadow: 0 0 20px rgba(70, 165, 229, 0.5);
+    letter-spacing: 3px; 
+    line-height: 0.9;
+    margin-bottom: 5px;
+}
+
+.tile__sub { 
+    font-size: 14px; 
+    color: rgba(255,255,255,0.7); 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+
+/* --- STATUT --- */
+.tile__status { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.tile__dot.online { 
+    width: 10px; 
+    height: 10px; 
+    background: #00ff88; 
+    border-radius: 50%; 
+    box-shadow: 0 0 10px #00ff88;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* --- VIEWER (FOND DES ONGLETS) --- */
+.viewer { 
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,0.85); 
+    z-index: 1000; 
+    padding: 40px; 
+    animation: fadeIn 0.4s ease;
+}
+
+.viewer__body { 
+    max-width: 1200px; 
+    margin: auto; 
+    background: rgba(255,255,255,0.02);
+    padding: 60px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 0 60px rgba(0,0,0,0.6);
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.close-btn { 
+    background: transparent; 
+    border: 1px solid var(--accent); 
+    color: var(--accent); 
+    padding: 12px 35px; 
+    font-family: 'Bebas Neue'; 
+    font-size: 20px;
+    cursor: pointer; 
+    margin-bottom: 40px; 
+    transition: 0.3s;
+    border-radius: 8px;
+}
+
+.close-btn:hover { 
+    background: var(--accent); 
+    color: #000; 
+}
+
+/* --- SYSTÈME DE CASCADE STAFF (Discord Style) --- */
+.role-item {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 15px 0;
+}
+
+.role-header {
+    cursor: pointer;
+    font-family: 'Rajdhani';
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.role-header:hover { color: var(--accent); }
+
+.pseudo-reveal {
+    display: none; /* Masqué au début */
+    color: var(--accent);
+    font-family: 'Bebas Neue';
+    font-size: 26px;
+    margin: 12px 0 8px 25px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    animation: slideDown 0.3s ease;
+}
+
+.subroles-list {
+    display: none; /* Masqué au début */
+    flex-direction: column;
+    gap: 8px;
+    margin-left: 50px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border-left: 2px solid rgba(70, 165, 229, 0.3);
+    animation: slideDown 0.3s ease;
+}
+
+.subrole-badge {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Rajdhani';
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.subrole-badge span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 12px;
+    box-shadow: 0 0 5px currentColor;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- FOOTER --- */
+.footer {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Rajdhani';
+    font-size: 25px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+}
+
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+/* --- LECTEUR MUSIQUE COMPACT --- */
+.ac {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    padding: 8px 12px; /* Réduit pour gagner en hauteur */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Espace réduit entre boutons et slider */
+    transition: all 0.3s ease;
+}
+
+.ac:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent);
+}
+
+/* Conteneur horizontal des boutons */
+.ac > div[style*="flex"] {
+    gap: 8px !important; /* Rapproche les boutons entre eux */
+}
+
+/* Style général des boutons */
+.ac__toggle {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+/* Bouton Play (réduit de 50px à 40px) */
+.ac__toggle:not([style*="width"]) {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 16px !important;
+    border-color: var(--accent) !important;
+}
+
+/* Boutons Next/Prev (réduits de 35px à 30px) */
+.ac__toggle[style*="width: 35px"] {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 10px !important;
+    opacity: 0.6;
+}
+
+.ac__toggle:hover {
+    background: var(--accent) !important;
+    color: #000 !important;
+    opacity: 1;
+}
+
+/* Slider plus discret */
+.ac__slider {
+    -webkit-appearance: none;
+    width: 85px; /* Légèrement plus court */
+    height: 2px; /* Encore plus fin */
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+.ac__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+}
