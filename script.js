@@ -29,6 +29,14 @@ const playlist = [
 ];
 let currentTrackIndex = 0;
 
+// Liens Google Docs
+const rulesLinks = {
+    serveur: "https://docs.google.com/document/d/1VKb4eJfoqYuEnPFZy3VIKV6PoWm3KQioFci5E1cw3Xw/edit?usp=sharing",
+    sasp: "https://docs.google.com/document/d/1crPjZrpPJnh5xr65boi8iLPaJLq72QiKrjugdM4gBss/edit?usp=sharing",
+    samr: "https://docs.google.com/document/d/1NX0qZMNN1z72jVv1H4CBPrSq-J1vq3TbG86GYse2ROM/edit?usp=sharing",
+    illegal: "https://docs.google.com/document/d/14vTxocrhfBv-ysWS7h1hYzh0L5YHVKH1nb5oeo1sj_Y/edit?usp=sharing"
+};
+
 const pageData = {
     lore: `
         <div style="max-width: 800px; margin: 0 auto; line-height: 1.7; text-align: justify; font-family: 'Rajdhani', sans-serif;">
@@ -70,19 +78,39 @@ const pageData = {
         </div>
     `,
     rules: `
-        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">CHARTE DE LA CITÉ</h2>
-        <div style="max-width: 800px; margin: 0 auto; color: white; font-family: 'Rajdhani'; line-height: 1.6;">
-            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid #46a5e5;">
-                <h3 style="color: #46a5e5; margin-bottom: 10px;">1. CONCEPT FAIR-PLAY</h3>
-                <p>Le RP est un jeu collaboratif. La défaite fait partie de l'histoire et doit être acceptée avec dignité pour le plaisir de tous.</p>
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">RÈGLEMENTS DE LA CITÉ</h2>
+        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 700px; margin: 0 auto;">
+            
+            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #46a5e5;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <span style="color: #46a5e5; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT GÉNÉRAL</span>
+                    <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Bases fondamentales du serveur</span>
+                </div>
+                <a href="${rulesLinks.serveur}" target="_blank" style="background: #46a5e5; color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Lire le doc</a>
             </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid #46a5e5;">
-                <h3 style="color: #46a5e5; margin-bottom: 10px;">2. INTERDICTIONS STRICTES</h3>
-                <p>Le PowerGaming, MetaGaming, No-Fear et le Stream-Sniping sont lourdement sanctionnés par un bannissement immédiat.</p>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #2980b9;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <span style="color: #2980b9; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT SASP</span>
+                    <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Code de conduite des forces de l'ordre</span>
+                </div>
+                <a href="${rulesLinks.sasp}" target="_blank" style="background: #2980b9; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Lire le doc</a>
             </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border-left: 3px solid #46a5e5;">
-                <h3 style="color: #46a5e5; margin-bottom: 10px;">3. COHÉRENCE DU PERSONNAGE</h3>
-                <p>Votre personnage doit avoir des motivations logiques. Chaque action doit avoir une conséquence directe sur votre évolution en ville.</p>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #e74c3c;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <span style="color: #e74c3c; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT SAMR</span>
+                    <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Protocoles médicaux et secours</span>
+                </div>
+                <a href="${rulesLinks.samr}" target="_blank" style="background: #e74c3c; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Lire le doc</a>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #9370DB;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <span style="color: #9370DB; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT ILLÉGAL</span>
+                    <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Activités et groupes criminels</span>
+                </div>
+                <a href="${rulesLinks.illegal}" target="_blank" style="background: #9370DB; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Lire le doc</a>
             </div>
         </div>
     `,
@@ -100,12 +128,6 @@ const pageData = {
             </div>
             <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
                 <span>Menu Personnel</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">F5</kbd>
-            </div>
-            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
-                <span>Interaction</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">E</kbd>
-            </div>
-            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
-                <span>Parler / Radio</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">N</kbd>
             </div>
         </div>
     `,
@@ -126,16 +148,14 @@ function openView(id) {
 
     if (id === 'staff') {
         const container = document.getElementById('roles-container');
-        container.innerHTML = ""; // Clear
+        container.innerHTML = "";
         serverRoles.forEach(roleName => {
             const roleId = roleName.replace(/\s/g, '');
             const member = staffMembers.find(m => m.highestRole === roleName);
             let memberHtml = '';
             if (member) {
                 memberHtml = `
-                    <div id="pseudo-${roleId}" class="pseudo-reveal" onclick="toggleSubRoles('${roleId}')" style="display:none; cursor:pointer; margin-top:10px;">
-                        └ ${member.pseudo}
-                    </div>
+                    <div id="pseudo-${roleId}" class="pseudo-reveal" onclick="toggleSubRoles('${roleId}')" style="display:none; cursor:pointer; margin-top:10px;">└ ${member.pseudo}</div>
                     <div id="subroles-${roleId}" class="subroles-list" style="display:none; flex-direction: column; gap: 8px; margin-left: 40px; margin-top: 10px;">
                         ${member.allRoles.map(r => `<div class="subrole-badge"><span style="background:${r.color}"></span>${r.name.toUpperCase()}</div>`).join('')}
                     </div>`;
@@ -150,100 +170,49 @@ function openView(id) {
     if (id === 'streams') {
         const list = document.getElementById('stream-list');
         list.innerHTML = ""; 
-
-        // 1. Création de la barre de recherche
         const searchInput = document.createElement('input');
         searchInput.type = 'text';
-        searchInput.placeholder = 'Rechercher un streamer ou un personnage...';
-        searchInput.style = "width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 5px; border: 1px solid rgba(70, 165, 229, 0.4); background: rgba(0,0,0,0.6); color: white; font-family: 'Rajdhani'; font-size: 16px; outline: none;";
-        
-        const resultsContainer = document.createElement('div');
-        list.appendChild(searchInput);
-        list.appendChild(resultsContainer);
+        searchInput.placeholder = 'Rechercher un streamer...';
+        searchInput.style = "width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #46a5e5; background: rgba(0,0,0,0.6); color: white; font-family: 'Rajdhani';";
+        const resContainer = document.createElement('div');
+        list.appendChild(searchInput); list.appendChild(resContainer);
 
-        // 2. Fonction pour afficher la liste (Triée + Filtrée)
-        const renderStreams = (filter = "") => {
-            resultsContainer.innerHTML = "";
-            
-            // Tri alphabétique par pseudo de streamer
-            const sortedData = [...streamerData].sort((a, b) => a.streamer.localeCompare(b.streamer));
-
-            sortedData.forEach(s => {
-                const searchLower = filter.toLowerCase();
-                if (s.streamer.toLowerCase().includes(searchLower) || s.character.toLowerCase().includes(searchLower)) {
-                    resultsContainer.innerHTML += `
+        const render = (f = "") => {
+            resContainer.innerHTML = "";
+            [...streamerData].sort((a,b)=>a.streamer.localeCompare(b.streamer)).forEach(s => {
+                if (s.streamer.toLowerCase().includes(f.toLowerCase()) || s.character.toLowerCase().includes(f.toLowerCase())) {
+                    resContainer.innerHTML += `
                         <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 1px solid rgba(70, 165, 229, 0.2);">
                             <div style="display: flex; flex-direction: column; gap: 4px;">
                                 <span style="color: #46a5e5; font-weight: bold; font-size: 18px; text-transform: uppercase;">${s.streamer}</span>
-                                <span style="color: rgba(255,255,255,0.7); font-style: italic; font-size: 14px;">Incarne : ${s.character}</span>
+                                <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Incarne : ${s.character}</span>
                             </div>
-                            <a href="${s.url}" target="_blank" style="background: #6441a5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: bold; transition: 0.3s;" onmouseover="this.style.background='#7d5bbe'" onmouseout="this.style.background='#6441a5'">
-                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L24 10.286V0zm15.429 9.429l-3.857 3.857H13.5L10.5 16.286V13.286H7.286V2.571h14.143z"/></svg>
-                                TWITCH
-                            </a>
+                            <a href="${s.url}" target="_blank" style="background: #6441a5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: bold; transition: 0.3s;">TWITCH</a>
                         </div>`;
                 }
             });
         };
-
-        // Event listener pour la recherche
-        searchInput.addEventListener('input', (e) => renderStreams(e.target.value));
-        
-        // Premier rendu
-        renderStreams();
+        searchInput.addEventListener('input', (e) => render(e.target.value));
+        render();
     }
 }
 
-function togglePseudo(id) { 
-    const el = document.getElementById('pseudo-' + id); 
-    if (el) el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none'; 
-}
-
-function toggleSubRoles(id) { 
-    const el = document.getElementById('subroles-' + id); 
-    if (el) el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'flex' : 'none'; 
-}
-
-function closeView() { 
-    document.getElementById('viewer').style.display = 'none'; 
-}
+function togglePseudo(id) { const el = document.getElementById('pseudo-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'block' : 'none'; }
+function toggleSubRoles(id) { const el = document.getElementById('subroles-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'flex' : 'none'; }
+function closeView() { document.getElementById('viewer').style.display = 'none'; }
 
 // --- LOGIQUE MUSIQUE ---
 const music = document.getElementById('bgMusic');
 const musicIcon = document.getElementById('music-icon');
 const slider = document.getElementById('volumeSlider');
 
-function loadTrack(index) {
-    if (!music) return;
-    music.src = playlist[index];
-    music.load();
-}
-
+function loadTrack(index) { if (music) { music.src = playlist[index]; music.load(); } }
 function toggleMusic() {
     if (!music) return;
     if (!music.getAttribute('src')) loadTrack(currentTrackIndex);
-
-    if (music.paused) {
-        music.volume = slider ? slider.value : 0.3;
-        music.play().then(() => { musicIcon.innerText = '⏸'; }).catch(err => console.log("Play blocked"));
-    } else {
-        music.pause();
-        musicIcon.innerText = '▶';
-    }
+    if (music.paused) { music.volume = slider ? slider.value : 0.3; music.play(); musicIcon.innerText = '⏸'; }
+    else { music.pause(); musicIcon.innerText = '▶'; }
 }
-
-function nextTrack() {
-    currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-    loadTrack(currentTrackIndex);
-    music.play().then(() => { musicIcon.innerText = '⏸'; });
-}
-
-function prevTrack() {
-    currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
-    loadTrack(currentTrackIndex);
-    music.play().then(() => { musicIcon.innerText = '⏸'; });
-}
-
-function changeVolume(v) {
-    if (music) music.volume = v;
-}
+function nextTrack() { currentTrackIndex = (currentTrackIndex + 1) % playlist.length; loadTrack(currentTrackIndex); music.play(); }
+function prevTrack() { currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length; loadTrack(currentTrackIndex); music.play(); }
+function changeVolume(v) { if (music) music.volume = v; }
