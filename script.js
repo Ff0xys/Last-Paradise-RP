@@ -29,6 +29,28 @@ const playlist = [
 ];
 let currentTrackIndex = 0;
 
+// --- LOGIQUE MUSIQUE (CORRIGÉE ET EXPORTÉE) ---
+const music = document.getElementById('bgMusic');
+const musicIcon = document.getElementById('music-icon');
+const slider = document.getElementById('volumeSlider');
+
+function loadTrack(index) { if (music) { music.src = playlist[index]; music.load(); } }
+
+window.toggleMusic = function() {
+    if (!music) return;
+    if (!music.getAttribute('src')) loadTrack(currentTrackIndex);
+    if (music.paused) { 
+        music.volume = slider ? slider.value : 0.3; 
+        music.play().catch(e => console.log("Lecture bloquée par le navigateur")); 
+        if(musicIcon) musicIcon.innerText = '⏸'; 
+    }
+    else { music.pause(); if(musicIcon) musicIcon.innerText = '▶'; }
+};
+
+window.nextTrack = function() { currentTrackIndex = (currentTrackIndex + 1) % playlist.length; loadTrack(currentTrackIndex); music.play(); };
+window.prevTrack = function() { currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length; loadTrack(currentTrackIndex); music.play(); };
+window.changeVolume = function(v) { if (music) music.volume = v; };
+
 // Liens Externes
 const rulesLinks = {
     serveur: "https://docs.google.com/document/d/1VKb4eJfoqYuEnPFZy3VIKV6PoWm3KQioFci5E1cw3Xw/edit?usp=sharing",
@@ -53,42 +75,29 @@ const pageData = {
             <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; letter-spacing: 3px; text-align: center; margin-bottom: 40px; text-shadow: 0 0 15px rgba(70, 165, 229, 0.4);">
                 L'ÉCHO DU CHILIAD : LA FIN DU MIRAGE
             </h2>
-            
             <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
                 Tout a commencé par un mirage doré au début des années 2000, quand des milliards de dollars issus de fonds fédéraux "évaporés" ont fait sortir de terre <strong>Last Paradise</strong>, une enclave de luxe qui n'était en réalité qu'un laboratoire social à ciel ouvert pour une cellule grise d'agents renégats du FIB et de l'IAA. Sous le nom de code <strong>"The Styx"</strong>, ces hommes de l'ombre n'étaient pas de simples investisseurs, mais des architectes du chaos qui ont bâti un empire criminel intouchable, avant d'être officiellement traqués par Washington en 2021.
             </p>
-
             <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
                 Mais alors que les communiqués annonçaient leur fuite, la réalité de 2026 est devenue un cauchemar éveillé : le Gouverneur actuel a instauré un plan de "Renaissance" d'une violence inouïe, asphyxiant les citoyens sous des taxes et une surveillance paranoïaque pour reconstruire une façade de gloire sur le dos d'une population qui lutte pour sa survie.
             </p>
-
-            <div style="border-left: 4px solid #46a5e5; padding: 15px 25px; background: rgba(70, 165, 229, 0.05); margin: 35px 0;">
-                <span style="font-style: italic; color: #46a5e5; font-size: 24px; font-weight: 700; display: block; text-align: center;">
-                    "Ils ne sont jamais partis."
-                </span>
-            </div>
-
-            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Pourtant, dans les bas-fonds, cette phrase revient comme un murmure terrifiant que personne n'ose crier. Au nord, autour d'un <strong>Mont Chiliad</strong> bouclé par des restrictions discrètes, l'inquiétude grandit. Des témoins racontent avoir aperçu, dans la pénombre des sentiers escarpés, des silhouettes de miliciens lourdement armés et dépourvus de tout insigne officiel. 
+            <p style="font-size: 22px; color: #46a5e5; text-align: center; font-weight: bold; font-style: italic; margin-bottom: 25px;">
+                "Ils ne sont jamais partis."
             </p>
-
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Pourtant, dans les bas-fonds, cette phrase revient comme un murmure terrifiant que personne n'ose crier. Au nord, autour d'un <strong>Mont Chiliad</strong> bouclé par des restrictions discrètes, l'inquiétude grandit. Des témoins racontent avoir aperçu, dans la pénombre des sentiers escarpés, des silhouettes de miliciens lourdement armés et dépourvus de tout insigne officiel.
+            </p>
             <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
                 Des convois anonymes s'engouffrent régulièrement dans les entrailles de la montagne sans laisser de trace, laissant planer l'ombre d'un complot qui dépasse l'entendement. Les services publics tentent de rester proches des citoyens, mais en interne, le doute s'installe. Entre manque d'informations et pression constante, les agents eux-mêmes peinent à comprendre l'ampleur réelle de la situation ou l'identité de ceux qu'ils servent véritablement.
             </p>
-
-            <p style="font-size: 20px; color: #fff; font-weight: 500; margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px dashed rgba(70, 165, 229, 0.3);">
-                Aujourd'hui, <strong>Los Santos</strong> vit dans un équilibre fragile : au sud, la méfiance envers le système et l'asphyxie économique ; au nord, la peur d'un danger mal identifié nourri par les rumeurs d'un Consortium qui aurait simplement changé de stratégie. Coincés entre ces deux réalités, les habitants avancent avec une seule certitude : <strong>quelque chose s'est réveillé sous leurs pieds, et personne ne sait encore quel rôle il est censé jouer dans ce qui arrive.</strong>
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 40px;">
+                Aujourd'hui, <strong>Los Santos</strong> vit dans un équilibre fragile : au sud, la méfiance envers le système et l'asphyxie économique ; au nord, la peur d'un danger mal identifié nourri par les rumeurs d'un Consortium qui aurait simplement changé de stratégie. Coincés entre ces deux réalités, les habitants avancent avec une seule certitude : quelque chose s'est réveillé sous leurs pieds, et personne ne sait encore quel rôle il est censé jouer dans ce qui arrive.
             </p>
-
-            <div style="text-align: center; margin-top: 60px;">
-                <span style="font-family: 'Bebas Neue'; font-size: 32px; color: #46a5e5; border: 2px solid #46a5e5; padding: 12px 35px; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px;">
-                    Écrivez votre propre histoire
-                </span>
-            </div>
+            <h3 style="font-family: 'Bebas Neue'; font-size: 35px; color: #f1c40f; text-align: center; letter-spacing: 2px;">MAINTENANT C'EST À VOUS D'ÉCRIRE VOTRE PROPRE HISTOIRE</h3>
         </div>
     `,
     rules: `
-        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">RÈGLEMENTS DE LA CITÉ</h2>
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">RÈGLEMENTS DU TERRITOIRE</h2>
         <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto;">
             <div class="list-item-row" style="border-color: #46a5e5;">
                 <div class="text-info"><strong>RÈGLEMENT GÉNÉRAL</strong><span>Bases fondamentales du serveur</span></div>
@@ -140,7 +149,7 @@ const pageData = {
             </div>
         </div>
     `,
-discord: `
+    discord: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">NOS DISCORDS</h2>
         <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto;">
             <div class="list-item-row" style="border-color: #5865F2;">
@@ -170,11 +179,47 @@ discord: `
         </div>
     `,
     paradise: `
-        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">REJOINDRE LA CITÉ</h2>
-        <div style="text-align: center; margin-top: 40px; padding: 40px; border: 1px dashed #46a5e5; border-radius: 10px; background: rgba(0,0,0,0.5); max-width: 600px; margin-left: auto; margin-right: auto;">
-            <p style="font-size: 1.2em; margin-bottom: 20px;">Pour vous connecter instantanément, ouvrez votre console <strong>F8</strong> et collez la commande suivante :</p>
-            <code style="background: #000; padding: 15px; color: #46a5e5; border-radius: 5px; font-size: 24px; border: 1px solid #46a5e5; display: block; margin-bottom: 20px;">connect lastparadise.fr</code>
-            <p style="color: rgba(255,255,255,0.6);">Assurez-vous que votre application FiveM est lancée.</p>
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">REJOINDRE LAST PARADISE</h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto; font-family: 'Rajdhani', sans-serif;">
+            
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5;">
+                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;">
+                    <strong style="color: #46a5e5;">1.</strong> Veuillez posséder <strong>Grand Theft Auto V</strong> (version originale) sur PC.
+                </p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5;">
+                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;">
+                    <strong style="color: #46a5e5;">2.</strong> Téléchargez <a href="https://fivem.net" target="_blank" style="color: #46a5e5; text-decoration: underline; font-weight: bold;">FiveM</a> et installez-le.
+                </p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5;">
+                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;">
+                    <strong style="color: #46a5e5;">3.</strong> Ouvrez FiveM et configurez-le avec votre jeu GTA V.
+                </p>
+            </div>
+
+            <div style="margin-top: 10px; text-align: center;">
+                <p style="color: #fff; font-size: 18px; margin-bottom: 15px;">
+                    <strong style="color: #46a5e5;">4.</strong> Appuyez sur <kbd style="background: #333; padding: 2px 6px; border-radius: 4px;">F8</kbd> et <strong>cliquez ci-dessous</strong> pour copier :
+                </p>
+                
+                <div onclick="navigator.clipboard.writeText('connect lastparadise.fr'); alert('Adresse copiée ! Faites CTRL+V dans votre console F8.');" 
+                     style="background: #000; padding: 20px; border-radius: 8px; border: 2px solid #46a5e5; display: inline-block; width: 100%; box-sizing: border-box; box-shadow: 0 0 15px rgba(70, 165, 229, 0.4); cursor: pointer; transition: 0.3s;"
+                     onmouseover="this.style.background='#111'; this.style.transform='scale(1.02)';"
+                     onmouseout="this.style.background='#000'; this.style.transform='scale(1)';">
+                    <code style="color: #46a5e5; font-size: 24px; font-weight: bold; letter-spacing: 2px;">connect lastparadise.fr</code>
+                    <p style="color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 5px; text-transform: uppercase;">Cliquer pour copier l'adresse</p>
+                </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5; margin-top: 10px;">
+                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;">
+                    <strong style="color: #46a5e5;">5.</strong> Faites <span style="color: #46a5e5;">CTRL+V</span>, appuyez sur <strong>ENTRÉE</strong>, puis refermez avec <kbd style="background: #333; padding: 2px 6px; border-radius: 4px;">F8</kbd>.
+                </p>
+            </div>
         </div>
     `,
     staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
@@ -198,7 +243,7 @@ styleSheet.innerHTML = `
 document.head.appendChild(styleSheet);
 
 // --- LOGIQUE D'AFFICHAGE ---
-function openView(id) {
+window.openView = function(id) {
     const viewer = document.getElementById('viewer');
     const content = document.getElementById('viewer-content');
     if (!pageData[id]) return;
@@ -249,21 +294,6 @@ function openView(id) {
     }
 }
 
-function togglePseudo(id) { const el = document.getElementById('pseudo-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'block' : 'none'; }
-function toggleSubRoles(id) { const el = document.getElementById('subroles-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'flex' : 'none'; }
-function closeView() { document.getElementById('viewer').style.display = 'none'; }
-
-// --- LOGIQUE MUSIQUE ---
-const music = document.getElementById('bgMusic');
-const musicIcon = document.getElementById('music-icon');
-const slider = document.getElementById('volumeSlider');
-function loadTrack(index) { if (music) { music.src = playlist[index]; music.load(); } }
-function toggleMusic() {
-    if (!music) return;
-    if (!music.getAttribute('src')) loadTrack(currentTrackIndex);
-    if (music.paused) { music.volume = slider ? slider.value : 0.3; music.play(); musicIcon.innerText = '⏸'; }
-    else { music.pause(); musicIcon.innerText = '▶'; }
-}
-function nextTrack() { currentTrackIndex = (currentTrackIndex + 1) % playlist.length; loadTrack(currentTrackIndex); music.play(); }
-function prevTrack() { currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length; loadTrack(currentTrackIndex); music.play(); }
-function changeVolume(v) { if (music) music.volume = v; }
+window.togglePseudo = function(id) { const el = document.getElementById('pseudo-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'block' : 'none'; }
+window.toggleSubRoles = function(id) { const el = document.getElementById('subroles-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'flex' : 'none'; }
+window.closeView = function() { document.getElementById('viewer').style.display = 'none'; }
