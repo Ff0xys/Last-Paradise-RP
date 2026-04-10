@@ -53,33 +53,9 @@ const pageData = {
             <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; letter-spacing: 3px; text-align: center; margin-bottom: 40px; text-shadow: 0 0 15px rgba(70, 165, 229, 0.4);">
                 L'ÉCHO DU CHILIAD : LA FIN DU MIRAGE
             </h2>
-            
             <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Tout a commencé par un mirage doré au début des années 2000, quand des milliards de dollars issus de fonds fédéraux "évaporés" ont fait sortir de terre <strong>Last Paradise</strong>, une enclave de luxe qui n'était en réalité qu'un laboratoire social à ciel ouvert pour une cellule grise d'agents renégats du FIB et de l'IAA. Sous le nom de code <strong>"The Styx"</strong>, ces hommes de l'ombre n'étaient pas de simples investisseurs, mais des architectes du chaos qui ont bâti un empire criminel intouchable, avant d'être officiellement traqués par Washington en 2021.
+                Tout a commencé par un mirage doré au début des années 2000, quand des milliards de dollars issus de fonds fédéraux "évaporés" ont fait sortir de terre <strong>Last Paradise</strong>...
             </p>
-
-            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Mais alors que les communiqués annonçaient leur fuite, la réalité de 2026 est devenue un cauchemar éveillé : le Gouverneur actuel a instauré un plan de "Renaissance" d'une violence inouïe, asphyxiant les citoyens sous des taxes et une surveillance paranoïaque pour reconstruire une façade de gloire sur le dos d'une population qui lutte pour sa survie.
-            </p>
-
-            <div style="border-left: 4px solid #46a5e5; padding: 15px 25px; background: rgba(70, 165, 229, 0.05); margin: 35px 0;">
-                <span style="font-style: italic; color: #46a5e5; font-size: 24px; font-weight: 700; display: block; text-align: center;">
-                    "Ils ne sont jamais partis."
-                </span>
-            </div>
-
-            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Pourtant, dans les bas-fonds, cette phrase revient comme un murmure terrifiant que personne n'ose crier. Au nord, autour d'un <strong>Mont Chiliad</strong> bouclé par des restrictions discrètes, l'inquiétude grandit. Des témoins racontent avoir aperçu, dans la pénombre des sentiers escarpés, des silhouettes de miliciens lourdement armés et dépourvus de tout insigne officiel. 
-            </p>
-
-            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Des convois anonymes s'engouffrent régulièrement dans les entrailles de la montagne sans laisser de trace, laissant planer l'ombre d'un complot qui dépasse l'entendement. Les services publics tentent de rester proches des citoyens, mais en interne, le doute s'installe. Entre manque d'informations et pression constante, les agents eux-mêmes peinent à comprendre l'ampleur réelle de la situation ou l'identité de ceux qu'ils servent véritablement.
-            </p>
-
-            <p style="font-size: 20px; color: #fff; font-weight: 500; margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px dashed rgba(70, 165, 229, 0.3);">
-                Aujourd'hui, <strong>Los Santos</strong> vit dans un équilibre fragile : au sud, la méfiance envers le système et l'asphyxie économique ; au nord, la peur d'un danger mal identifié nourri par les rumeurs d'un Consortium qui aurait simplement changé de stratégie. Coincés entre ces deux réalités, les habitants avancent avec une seule certitude : <strong>quelque chose s'est réveillé sous leurs pieds, et personne ne sait encore quel rôle il est censé jouer dans ce qui arrive.</strong>
-            </p>
-
             <div style="text-align: center; margin-top: 60px;">
                 <span style="font-family: 'Bebas Neue'; font-size: 32px; color: #46a5e5; border: 2px solid #46a5e5; padding: 12px 35px; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px;">
                     Écrivez votre propre histoire
@@ -114,61 +90,45 @@ const pageData = {
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <div class="key-item"><span>Se cacher</span><kbd>A</kbd></div>
                 <div class="key-item"><span>Pointer / Ceinture</span><kbd>B</kbd></div>
-                <div class="key-item"><span>Champs de vision</span><kbd>C</kbd></div>
-                <div class="key-item"><span>S'asseoir</span><kbd>E</kbd></div>
-                <div class="key-item"><span>Croiser les bras</span><kbd>H</kbd></div>
-                <div class="key-item"><span>Tête / Boîte à gants</span><kbd>K</kbd></div>
-                <div class="key-item"><span>Menu ESC</span><kbd>P</kbd></div>
                 <div class="key-item"><span>Chat InGame</span><kbd>T</kbd></div>
-                <div class="key-item"><span>Véhicule / Tomber</span><kbd>U</kbd></div>
-                <div class="key-item"><span>Vue (1ère/3ème)</span><kbd>V</kbd></div>
-                <div class="key-item"><span>Lever bras / Stop Anim</span><kbd>X</kbd></div>
-                <div class="key-item"><span>Tomber / Se relever</span><kbd>Y</kbd></div>
+                <div class="key-item"><span>Lever bras</span><kbd>X</kbd></div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <div class="key-item"><span>Téléphone</span><kbd>F1</kbd></div>
-                <div class="key-item"><span>Menu Animations</span><kbd>F3</kbd></div>
-                <div class="key-item"><span>Menu Personnel</span><kbd>F5</kbd></div>
-                <div class="key-item"><span>Menu Job</span><kbd>F6</kbd></div>
-                <div class="key-item"><span>Menu Vêtements</span><kbd>F7</kbd></div>
-                <div class="key-item"><span>Portée de la voix</span><kbd>F11</kbd></div>
-                <div class="key-item"><span>Capture Steam</span><kbd>F12</kbd></div>
                 <div class="key-item"><span>Inventaire</span><kbd>TAB</kbd></div>
                 <div class="key-item"><span>Interaction</span><kbd>ALT</kbd></div>
-                <div class="key-item"><span>S'accroupir</span><kbd>CTRL G</kbd></div>
-                <div class="key-item"><span>Raccourcis Inventaire</span><kbd>1-5</kbd></div>
             </div>
         </div>
     `,
     discord: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">NOS DISCORDS</h2>
-        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 750px; margin: 0 auto;">
+        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto;">
             <div class="list-item-row" style="border-color: #5865F2;">
-                <div class="text-info"><strong>DISCORD GÉNÉRAL</strong><span>Le cœur de la communauté, toutes les infos ici</span></div>
+                <div class="text-info"><strong>DISCORD GÉNÉRAL</strong><span>Le cœur de la communauté</span></div>
                 <a href="${discordLinks.general}" target="_blank" class="action-btn" style="background: #5865F2;">REJOINDRE</a>
             </div>
             <div class="list-item-row" style="border-color: #9370DB;">
-                <div class="text-info"><strong>DISCORD ILLÉGAL</strong><span>Dédié aux projets de l'ombre et gangs</span></div>
+                <div class="text-info"><strong>DISCORD ILLÉGAL</strong><span>L'ombre de la ville</span></div>
                 <a href="${discordLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB;">REJOINDRE</a>
             </div>
             <div class="list-item-row" style="border-color: #2980b9;">
-                <div class="text-info"><strong>DISCORD SASP</strong><span>Communications radio et dossiers de police</span></div>
+                <div class="text-info"><strong>DISCORD SASP</strong><span>Forces de l'ordre</span></div>
                 <a href="${discordLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9;">REJOINDRE</a>
             </div>
             <div class="list-item-row" style="border-color: #f1c40f;">
-                <div class="text-info"><strong>GOUVERNEMENT</strong><span>Lois de la cité et demandes officielles</span></div>
-                <a href="${discordLinks.gouv}" target="_blank" class="action-btn" style="background: #f1c40f; color: black;">REJOINDRE</a>
+                <div class="text-info"><strong>GOUVERNEMENT</strong><span>Lois et décrets officiels</span></div>
+                <a href="${discordLinks.gouv}" target="_blank" class="action-btn" style="background: #f1c40f; color: #000;">REJOINDRE</a>
             </div>
             <div class="list-item-row" style="border-color: #e74c3c;">
-                <div class="text-info"><strong>DISCORD SAMR</strong><span>Prises de service et rapports médicaux</span></div>
+                <div class="text-info"><strong>DISCORD SAMR</strong><span>Santé et Secours</span></div>
                 <a href="${discordLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c;">REJOINDRE</a>
             </div>
             <div class="list-item-row" style="border-color: #2ecc71;">
-                <div class="text-info"><strong>AGENCE IMMO</strong><span>Gestion de vos propriétés et locations</span></div>
+                <div class="text-info"><strong>AGENCE IMMO</strong><span>Gestion immobilière</span></div>
                 <a href="${discordLinks.immo}" target="_blank" class="action-btn" style="background: #2ecc71;">REJOINDRE</a>
             </div>
             <div class="list-item-row" style="border-color: #e67e22;">
-                <div class="text-info"><strong>PDM MOTORSPORT</strong><span>Le rendez-vous des passionnés de mécanique</span></div>
+                <div class="text-info"><strong>PDM MOTORSPORT</strong><span>Concessionnaire Auto</span></div>
                 <a href="${discordLinks.pdm}" target="_blank" class="action-btn" style="background: #e67e22;">REJOINDRE</a>
             </div>
         </div>
@@ -176,9 +136,8 @@ const pageData = {
     paradise: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">REJOINDRE LA CITÉ</h2>
         <div style="text-align: center; margin-top: 40px; padding: 40px; border: 1px dashed #46a5e5; border-radius: 10px; background: rgba(0,0,0,0.5); max-width: 600px; margin-left: auto; margin-right: auto;">
-            <p style="font-size: 1.2em; margin-bottom: 20px;">Pour vous connecter instantanément, ouvrez votre console <strong>F8</strong> et collez la commande suivante :</p>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">Console <strong>F8</strong> :</p>
             <code style="background: #000; padding: 15px; color: #46a5e5; border-radius: 5px; font-size: 24px; border: 1px solid #46a5e5; display: block; margin-bottom: 20px;">connect lastparadise.fr</code>
-            <p style="color: rgba(255,255,255,0.6);">Assurez-vous que votre application FiveM est lancée.</p>
         </div>
     `,
     staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
@@ -194,7 +153,7 @@ styleSheet.innerHTML = `
     .text-info { display: flex; flex-direction: column; gap: 4px; }
     .text-info strong { color: white; font-size: 18px; text-transform: uppercase; }
     .text-info span { color: rgba(255,255,255,0.6); font-size: 14px; }
-    .action-btn { color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 13px; text-align: center; min-width: 100px; }
+    .action-btn { color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 13px; text-align: center; min-width: 100px; cursor: pointer; }
     .action-btn:hover { filter: brightness(1.2); transform: scale(1.05); }
     .key-item { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-family: 'Rajdhani'; }
     .key-item kbd { background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
