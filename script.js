@@ -53,9 +53,33 @@ const pageData = {
             <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; letter-spacing: 3px; text-align: center; margin-bottom: 40px; text-shadow: 0 0 15px rgba(70, 165, 229, 0.4);">
                 L'ÉCHO DU CHILIAD : LA FIN DU MIRAGE
             </h2>
+            
             <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Tout a commencé par un mirage doré au début des années 2000, quand des milliards de dollars issus de fonds fédéraux "évaporés" ont fait sortir de terre <strong>Last Paradise</strong>...
+                Tout a commencé par un mirage doré au début des années 2000, quand des milliards de dollars issus de fonds fédéraux "évaporés" ont fait sortir de terre <strong>Last Paradise</strong>, une enclave de luxe qui n'était en réalité qu'un laboratoire social à ciel ouvert pour une cellule grise d'agents renégats du FIB et de l'IAA. Sous le nom de code <strong>"The Styx"</strong>, ces hommes de l'ombre n'étaient pas de simples investisseurs, mais des architectes du chaos qui ont bâti un empire criminel intouchable, avant d'être officiellement traqués par Washington en 2021.
             </p>
+
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Mais alors que les communiqués annonçaient leur fuite, la réalité de 2026 est devenue un cauchemar éveillé : le Gouverneur actuel a instauré un plan de "Renaissance" d'une violence inouïe, asphyxiant les citoyens sous des taxes et une surveillance paranoïaque pour reconstruire une façade de gloire sur le dos d'une population qui lutte pour sa survie.
+            </p>
+
+            <div style="border-left: 4px solid #46a5e5; padding: 15px 25px; background: rgba(70, 165, 229, 0.05); margin: 35px 0;">
+                <span style="font-style: italic; color: #46a5e5; font-size: 24px; font-weight: 700; display: block; text-align: center;">
+                    "Ils ne sont jamais partis."
+                </span>
+            </div>
+
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Pourtant, dans les bas-fonds, cette phrase revient comme un murmure terrifiant que personne n'ose crier. Au nord, autour d'un <strong>Mont Chiliad</strong> bouclé par des restrictions discrètes, l'inquiétude grandit. Des témoins racontent avoir aperçu, dans la pénombre des sentiers escarpés, des silhouettes de miliciens lourdement armés et dépourvus de tout insigne officiel. 
+            </p>
+
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Des convois anonymes s'engouffrent régulièrement dans les entrailles de la montagne sans laisser de trace, laissant planer l'ombre d'un complot qui dépasse l'entendement. Les services publics tentent de rester proches des citoyens, mais en interne, le doute s'installe. Entre manque d'informations et pression constante, les agents eux-mêmes peinent à comprendre l'ampleur réelle de la situation ou l'identité de ceux qu'ils servent véritablement.
+            </p>
+
+            <p style="font-size: 20px; color: #fff; font-weight: 500; margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px dashed rgba(70, 165, 229, 0.3);">
+                Aujourd'hui, <strong>Los Santos</strong> vit dans un équilibre fragile : au sud, la méfiance envers le système et l'asphyxie économique ; au nord, la peur d'un danger mal identifié nourri par les rumeurs d'un Consortium qui aurait simplement changé de stratégie. Coincés entre ces deux réalités, les habitants avancent avec une seule certitude : <strong>quelque chose s'est réveillé sous leurs pieds, et personne ne sait encore quel rôle il est censé jouer dans ce qui arrive.</strong>
+            </p>
+
             <div style="text-align: center; margin-top: 60px;">
                 <span style="font-family: 'Bebas Neue'; font-size: 32px; color: #46a5e5; border: 2px solid #46a5e5; padding: 12px 35px; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px;">
                     Écrivez votre propre histoire
@@ -90,13 +114,29 @@ const pageData = {
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <div class="key-item"><span>Se cacher</span><kbd>A</kbd></div>
                 <div class="key-item"><span>Pointer / Ceinture</span><kbd>B</kbd></div>
+                <div class="key-item"><span>Champs de vision</span><kbd>C</kbd></div>
+                <div class="key-item"><span>S'asseoir</span><kbd>E</kbd></div>
+                <div class="key-item"><span>Croiser les bras</span><kbd>H</kbd></div>
+                <div class="key-item"><span>Tête / Boîte à gants</span><kbd>K</kbd></div>
+                <div class="key-item"><span>Menu ESC</span><kbd>P</kbd></div>
                 <div class="key-item"><span>Chat InGame</span><kbd>T</kbd></div>
-                <div class="key-item"><span>Lever bras</span><kbd>X</kbd></div>
+                <div class="key-item"><span>Véhicule / Tomber</span><kbd>U</kbd></div>
+                <div class="key-item"><span>Vue (1ère/3ème)</span><kbd>V</kbd></div>
+                <div class="key-item"><span>Lever bras / Stop Anim</span><kbd>X</kbd></div>
+                <div class="key-item"><span>Tomber / Se relever</span><kbd>Y</kbd></div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <div class="key-item"><span>Téléphone</span><kbd>F1</kbd></div>
+                <div class="key-item"><span>Menu Animations</span><kbd>F3</kbd></div>
+                <div class="key-item"><span>Menu Personnel</span><kbd>F5</kbd></div>
+                <div class="key-item"><span>Menu Job</span><kbd>F6</kbd></div>
+                <div class="key-item"><span>Menu Vêtements</span><kbd>F7</kbd></div>
+                <div class="key-item"><span>Portée de la voix</span><kbd>F11</kbd></div>
+                <div class="key-item"><span>Capture Steam</span><kbd>F12</kbd></div>
                 <div class="key-item"><span>Inventaire</span><kbd>TAB</kbd></div>
                 <div class="key-item"><span>Interaction</span><kbd>ALT</kbd></div>
+                <div class="key-item"><span>S'accroupir</span><kbd>CTRL G</kbd></div>
+                <div class="key-item"><span>Raccourcis Inventaire</span><kbd>1-5</kbd></div>
             </div>
         </div>
     `,
@@ -136,8 +176,9 @@ const pageData = {
     paradise: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">REJOINDRE LA CITÉ</h2>
         <div style="text-align: center; margin-top: 40px; padding: 40px; border: 1px dashed #46a5e5; border-radius: 10px; background: rgba(0,0,0,0.5); max-width: 600px; margin-left: auto; margin-right: auto;">
-            <p style="font-size: 1.2em; margin-bottom: 20px;">Console <strong>F8</strong> :</p>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">Pour vous connecter instantanément, ouvrez votre console <strong>F8</strong> et collez la commande suivante :</p>
             <code style="background: #000; padding: 15px; color: #46a5e5; border-radius: 5px; font-size: 24px; border: 1px solid #46a5e5; display: block; margin-bottom: 20px;">connect lastparadise.fr</code>
+            <p style="color: rgba(255,255,255,0.6);">Assurez-vous que votre application FiveM est lancée.</p>
         </div>
     `,
     staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
