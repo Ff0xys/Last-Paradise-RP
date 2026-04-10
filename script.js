@@ -140,7 +140,7 @@ const pageData = {
             </div>
         </div>
     `,
-    discord: `
+discord: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">NOS DISCORDS</h2>
         <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto;">
             <div class="list-item-row" style="border-color: #5865F2;">
@@ -163,13 +163,9 @@ const pageData = {
                 <div class="text-info"><strong>DISCORD SAMR</strong><span>Santé et Secours</span></div>
                 <a href="${discordLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c;">REJOINDRE</a>
             </div>
-            <div class="list-item-row" style="border-color: #2ecc71;">
-                <div class="text-info"><strong>AGENCE IMMO</strong><span>Gestion immobilière</span></div>
-                <a href="${discordLinks.immo}" target="_blank" class="action-btn" style="background: #2ecc71;">REJOINDRE</a>
-            </div>
-            <div class="list-item-row" style="border-color: #e67e22;">
-                <div class="text-info"><strong>PDM MOTORSPORT</strong><span>Concessionnaire Auto</span></div>
-                <a href="${discordLinks.pdm}" target="_blank" class="action-btn" style="background: #e67e22;">REJOINDRE</a>
+            <div class="list-item-row" style="border-color: #1abc9c;">
+                <div class="text-info"><strong>DISCORD ENTREPRISES</strong><span>Gestion et demandes pro</span></div>
+                <a href="https://discord.gg/tWEaQbArej" target="_blank" class="action-btn" style="background: #1abc9c;">REJOINDRE</a>
             </div>
         </div>
     `,
