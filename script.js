@@ -126,6 +126,7 @@ function openView(id) {
 
     if (id === 'staff') {
         const container = document.getElementById('roles-container');
+        container.innerHTML = ""; // Clear
         serverRoles.forEach(roleName => {
             const roleId = roleName.replace(/\s/g, '');
             const member = staffMembers.find(m => m.highestRole === roleName);
@@ -148,15 +149,26 @@ function openView(id) {
 
     if (id === 'streams') {
         const list = document.getElementById('stream-list');
+        list.innerHTML = ""; // Clear
         streamerData.forEach(s => {
             list.innerHTML += `<a href="${s.url}" target="_blank" class="tile"><div><span>${s.streamer}</span><span>${s.character}</span></div><div class="live-badge">LIVE</div></a>`;
         });
     }
 }
 
-function togglePseudo(id) { const el = document.getElementById('pseudo-' + id); if (el) el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none'; }
-function toggleSubRoles(id) { const el = document.getElementById('subroles-' + id); if (el) el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'flex' : 'none'; }
-function closeView() { document.getElementById('viewer').style.display = 'none'; }
+function togglePseudo(id) { 
+    const el = document.getElementById('pseudo-' + id); 
+    if (el) el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none'; 
+}
+
+function toggleSubRoles(id) { 
+    const el = document.getElementById('subroles-' + id); 
+    if (el) el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'flex' : 'none'; 
+}
+
+function closeView() { 
+    document.getElementById('viewer').style.display = 'none'; 
+}
 
 // --- LOGIQUE MUSIQUE ---
 const music = document.getElementById('bgMusic');
@@ -175,7 +187,7 @@ function toggleMusic() {
 
     if (music.paused) {
         music.volume = slider ? slider.value : 0.3;
-        music.play().then(() => { musicIcon.innerText = '⏸'; });
+        music.play().then(() => { musicIcon.innerText = '⏸'; }).catch(err => console.log("Play blocked"));
     } else {
         music.pause();
         musicIcon.innerText = '▶';
@@ -189,4 +201,11 @@ function nextTrack() {
 }
 
 function prevTrack() {
-    currentTrackIndex = (currentTrack
+    currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+    loadTrack(currentTrackIndex);
+    music.play().then(() => { musicIcon.innerText = '⏸'; });
+}
+
+function changeVolume(v) {
+    if (music) music.volume = v;
+}
