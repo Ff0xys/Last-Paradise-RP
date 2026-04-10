@@ -3,11 +3,6 @@ const streamerData = [
     { streamer: "Lyx_tv", character: "Salvatore Morales", url: "https://twitch.tv/tv_lyx" }
 ];
 
-const studioData = {
-    name: "LAST LEGACY STUDIO",
-    roles: [{ name: "Propriétaire", color: "#3498db" }]
-};
-
 const staffMembers = [
     { 
         pseudo: "LYX_TV", 
@@ -27,11 +22,10 @@ const serverRoles = [
     "Administrateurs", "Modérateurs", "Supports","Supports Test"
 ];
 
-// --- PLAYLIST CONFIGURATION ---
 const playlist = [
-    "https://files.catbox.moe/ze2akz.mp3", // Nouveau morceau - Lancé en 1er
-    "https://files.catbox.moe/cndtub.mp3", // Ancien morceau 1
-    "https://files.catbox.moe/u1gdus.mp3" // Ancien morceau 2
+    "https://files.catbox.moe/ze2akz.mp3",
+    "https://files.catbox.moe/cndtub.mp3",
+    "https://files.catbox.moe/u1gdus.mp3"
 ];
 let currentTrackIndex = 0;
 
@@ -41,14 +35,85 @@ const pageData = {
             <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; letter-spacing: 3px; text-align: center; margin-bottom: 40px; text-shadow: 0 0 15px rgba(70, 165, 229, 0.4);">
                 L'ÉCHO DU CHILIAD : LA FIN DU MIRAGE
             </h2>
+            
             <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Tout a commencé par un mirage doré...
+                Tout a commencé par un mirage doré au début des années 2000, quand des milliards de dollars issus de fonds fédéraux "évaporés" ont fait sortir de terre <strong>Last Paradise</strong>, une enclave de luxe qui n'était en réalité qu'un laboratoire social à ciel ouvert pour une cellule grise d'agents renégats du FIB et de l'IAA. Sous le nom de code <strong>"The Styx"</strong>, ces hommes de l'ombre n'étaient pas de simples investisseurs, mais des architectes du chaos qui ont bâti un empire criminel intouchable, avant d'être officiellement traqués par Washington en 2021.
             </p>
+
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Mais alors que les communiqués annonçaient leur fuite, la réalité de 2026 est devenue un cauchemar éveillé : le Gouverneur actuel a instauré un plan de "Renaissance" d'une violence inouïe, asphyxiant les citoyens sous des taxes et une surveillance paranoïaque pour reconstruire une façade de gloire sur le dos d'une population qui lutte pour sa survie.
+            </p>
+
+            <div style="border-left: 4px solid #46a5e5; padding: 15px 25px; background: rgba(70, 165, 229, 0.05); margin: 35px 0;">
+                <span style="font-style: italic; color: #46a5e5; font-size: 24px; font-weight: 700; display: block; text-align: center;">
+                    "Ils ne sont jamais partis."
+                </span>
             </div>
+
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Pourtant, dans les bas-fonds, cette phrase revient comme un murmure terrifiant que personne n'ose crier. Au nord, autour d'un <strong>Mont Chiliad</strong> bouclé par des restrictions discrètes, l'inquiétude grandit. Des témoins racontent avoir aperçu, dans la pénombre des sentiers escarpés, des silhouettes de miliciens lourdement armés et dépourvus de tout insigne officiel. 
+            </p>
+
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Des convois anonymes s'engouffrent régulièrement dans les entrailles de la montagne sans laisser de trace, laissant planer l'ombre d'un complot qui dépasse l'entendement. Les services publics tentent de rester proches des citoyens, mais en interne, le doute s'installe. Entre manque d'informations et pression constante, les agents eux-mêmes peinent à comprendre l'ampleur réelle de la situation ou l'identité de ceux qu'ils servent véritablement.
+            </p>
+
+            <p style="font-size: 20px; color: #fff; font-weight: 500; margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px dashed rgba(70, 165, 229, 0.3);">
+                Aujourd'hui, <strong>Los Santos</strong> vit dans un équilibre fragile : au sud, la méfiance envers le système et l'asphyxie économique ; au nord, la peur d'un danger mal identifié nourri par les rumeurs d'un Consortium qui aurait simplement changé de stratégie. Coincés entre ces deux réalités, les habitants avancent avec une seule certitude : <strong>quelque chose s'est réveillé sous leurs pieds, et personne ne sait encore quel rôle il est censé jouer dans ce qui arrive.</strong>
+            </p>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <span style="font-family: 'Bebas Neue'; font-size: 32px; color: #46a5e5; border: 2px solid #46a5e5; padding: 12px 35px; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px;">
+                    Écrivez votre propre histoire
+                </span>
+            </div>
+        </div>
     `,
-    staff: `<h2>Le Staff</h2><div id="roles-container"></div>`,
-    streams: `<h2>STREAMERS</h2><div id="stream-list"></div>`,
-    paradise: `<h2>CONNEXION</h2><code>connect lastparadise.fr</code>`
+    rules: `
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">CHARTE DE LA CITÉ</h2>
+        <div style="max-width: 800px; margin: 0 auto; color: white; font-family: 'Rajdhani'; line-height: 1.6;">
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid #46a5e5;">
+                <h3 style="color: #46a5e5; margin-bottom: 10px;">1. CONCEPT FAIR-PLAY</h3>
+                <p>Le RP est un jeu collaboratif. La défaite fait partie de l'histoire et doit être acceptée avec dignité pour le plaisir de tous.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid #46a5e5;">
+                <h3 style="color: #46a5e5; margin-bottom: 10px;">2. INTERDICTIONS STRICTES</h3>
+                <p>Le PowerGaming, MetaGaming, No-Fear et le Stream-Sniping sont lourdement sanctionnés par un bannissement immédiat.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border-left: 3px solid #46a5e5;">
+                <h3 style="color: #46a5e5; margin-bottom: 10px;">3. COHÉRENCE DU PERSONNAGE</h3>
+                <p>Votre personnage doit avoir des motivations logiques. Chaque action doit avoir une conséquence directe sur votre évolution en ville.</p>
+            </div>
+        </div>
+    `,
+    keys: `
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">MAPPAGE CLAVIER</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 800px; margin: 0 auto;">
+            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
+                <span>Téléphone</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">F1</kbd>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
+                <span>Inventaire</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">F2</kbd>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
+                <span>Animations</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">F3</kbd>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
+                <span>Menu Personnel</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">F5</kbd>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
+                <span>Interaction</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">E</kbd>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
+                <span>Parler / Radio</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">N</kbd>
+            </div>
+        </div>
+    `,
+    staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
+    streams: `<h2>DIFFUSIONS EN DIRECT</h2><div id="stream-list"></div>`,
+    paradise: `<h2>REJOINDRE LA CITÉ</h2><div style="text-align: center;"><p>Appuyez sur F8 et collez :</p><br><code style="background: #000; padding: 15px; color: #46a5e5; border-radius: 5px; font-size: 20px; border: 1px solid #46a5e5;">connect lastparadise.fr</code></div>`,
+    galerie: `<h2>GALERIE DE LA VILLE</h2><p style="text-align:center;">Bientôt disponible...</p>`,
+    event: `<h2>ÉVÉNEMENTS À VENIR</h2><p style="text-align:center;">Aucun événement prévu pour le moment.</p>`
 };
 
 // --- LOGIQUE D'AFFICHAGE ---
@@ -101,28 +166,16 @@ const slider = document.getElementById('volumeSlider');
 function loadTrack(index) {
     if (!music) return;
     music.src = playlist[index];
-    music.load(); // Force le chargement du nouveau fichier
+    music.load();
 }
 
 function toggleMusic() {
     if (!music) return;
-    
-    // Correction : s'assurer qu'une source est bien présente avant de lire
-    if (!music.getAttribute('src') || music.getAttribute('src') === "") {
-        loadTrack(currentTrackIndex);
-    }
+    if (!music.getAttribute('src')) loadTrack(currentTrackIndex);
 
     if (music.paused) {
         music.volume = slider ? slider.value : 0.3;
-        // Le play() est asynchrone
-        const playPromise = music.play();
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                musicIcon.innerText = '⏸';
-            }).catch(error => {
-                console.error("Erreur de lecture : ", error);
-            });
-        }
+        music.play().then(() => { musicIcon.innerText = '⏸'; });
     } else {
         music.pause();
         musicIcon.innerText = '▶';
@@ -136,21 +189,4 @@ function nextTrack() {
 }
 
 function prevTrack() {
-    currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
-    loadTrack(currentTrackIndex);
-    music.play().then(() => { musicIcon.innerText = '⏸'; });
-}
-
-function changeVolume(amount) {
-    if (music) music.volume = amount;
-}
-
-if (music) {
-    music.onended = () => { nextTrack(); };
-}
-
-// Initialisation au chargement de la page
-window.addEventListener('load', () => {
-    loadTrack(currentTrackIndex);
-    if (music && slider) music.volume = slider.value;
-});
+    currentTrackIndex = (currentTrack
