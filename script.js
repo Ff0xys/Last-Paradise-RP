@@ -151,7 +151,17 @@ function openView(id) {
         const list = document.getElementById('stream-list');
         list.innerHTML = ""; // Clear
         streamerData.forEach(s => {
-            list.innerHTML += `<a href="${s.url}" target="_blank" class="tile"><div><span>${s.streamer}</span><span>${s.character}</span></div><div class="live-badge">LIVE</div></a>`;
+            list.innerHTML += `
+                <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 1px solid rgba(70, 165, 229, 0.2);">
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <span style="color: #46a5e5; font-weight: bold; font-size: 18px; text-transform: uppercase;">${s.streamer}</span>
+                        <span style="color: rgba(255,255,255,0.7); font-style: italic; font-size: 14px;">Incarne : ${s.character}</span>
+                    </div>
+                    <a href="${s.url}" target="_blank" style="background: #6441a5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: bold; transition: 0.3s;" onmouseover="this.style.background='#7d5bbe'" onmouseout="this.style.background='#6441a5'">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L24 10.286V0zm15.429 9.429l-3.857 3.857H13.5L10.5 16.286V13.286H7.286V2.571h14.143z"/></svg>
+                        TWITCH
+                    </a>
+                </div>`;
         });
     }
 }
