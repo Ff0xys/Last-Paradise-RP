@@ -5,6 +5,8 @@
     --bg-overlay: rgba(0, 0, 0, 0.7); 
     --glass: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.12);
+    /* Nouvelle couleur pour le verre dépoli sombre */
+    --modal-bg: rgba(10, 5, 20, 0.55);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -118,12 +120,12 @@ body {
     50% { opacity: 0.4; transform: scale(0.8); }
 }
 
-/* --- VIEWER (FOND DES ONGLETS) --- */
+/* --- VIEWER (FENÊTRES DE CONTENU) --- */
 .viewer { 
     display: none; 
     position: fixed; 
     inset: 0; 
-    background: rgba(0,0,0,0.85); 
+    background: rgba(0,0,0,0.7); /* Fond arrière légèrement plus clair pour voir le blur */
     z-index: 1000; 
     padding: 40px; 
     animation: fadeIn 0.4s ease;
@@ -131,15 +133,26 @@ body {
 
 .viewer__body { 
     max-width: 1200px; 
-    margin: auto; 
-    background: rgba(255,255,255,0.02);
-    padding: 60px;
-    border-radius: 30px;
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(25px);
-    box-shadow: 0 0 60px rgba(0,0,0,0.6);
+    width: 70%; /* Selon tes nouveaux réglages */
+    margin: 5vh auto; 
+    
+    /* Étape 1 & 2 : Fond transparent + Flou arrière */
+    background: var(--modal-bg);
+    backdrop-filter: blur(15px) saturate(160%);
+    -webkit-backdrop-filter: blur(15px) saturate(160%);
+
+    /* Étape 3 : Bordure fine cyan */
+    border: 1px solid rgba(68, 221, 255, 0.3);
+    border-radius: 12px;
+    
+    /* Étape 4 : Lueur externe */
+    box-shadow: 0 10px 40px rgba(68, 221, 255, 0.2);
+    
+    padding: 45px;
+    color: #f0f0f0;
     overflow-y: auto;
-    max-height: 90vh;
+    max-height: 85vh;
+    position: relative;
 }
 
 .close-btn { 
@@ -160,7 +173,7 @@ body {
     color: #000; 
 }
 
-/* --- SYSTÈME DE CASCADE STAFF (Discord Style) --- */
+/* --- STAFF & ROLES --- */
 .role-item {
     border-bottom: 1px solid rgba(255,255,255,0.05);
     padding: 15px 0;
@@ -180,7 +193,7 @@ body {
 .role-header:hover { color: var(--accent); }
 
 .pseudo-reveal {
-    display: none; /* Masqué au début */
+    display: none; 
     color: var(--accent);
     font-family: 'Bebas Neue';
     font-size: 26px;
@@ -191,7 +204,7 @@ body {
 }
 
 .subroles-list {
-    display: none; /* Masqué au début */
+    display: none; 
     flex-direction: column;
     gap: 8px;
     margin-left: 50px;
@@ -241,7 +254,8 @@ body {
     from { opacity: 0; transform: translateY(20px); } 
     to { opacity: 1; transform: translateY(0); } 
 }
-/* --- LECTEUR MUSIQUE COMPACT --- */
+
+/* --- LECTEUR MUSIQUE --- */
 .ac {
     position: fixed;
     top: 15px;
@@ -250,11 +264,11 @@ body {
     background: var(--glass);
     backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
-    padding: 8px 12px; /* Réduit pour gagner en hauteur */
+    padding: 8px 12px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    gap: 6px; /* Espace réduit entre boutons et slider */
+    gap: 6px;
     transition: all 0.3s ease;
 }
 
@@ -263,12 +277,6 @@ body {
     border-color: var(--accent);
 }
 
-/* Conteneur horizontal des boutons */
-.ac > div[style*="flex"] {
-    gap: 8px !important; /* Rapproche les boutons entre eux */
-}
-
-/* Style général des boutons */
 .ac__toggle {
     background: rgba(255, 255, 255, 0.03) !important;
     border: 1px solid var(--glass-border) !important;
@@ -281,7 +289,6 @@ body {
     transition: 0.2s;
 }
 
-/* Bouton Play (réduit de 50px à 40px) */
 .ac__toggle:not([style*="width"]) {
     width: 40px !important;
     height: 40px !important;
@@ -289,7 +296,6 @@ body {
     border-color: var(--accent) !important;
 }
 
-/* Boutons Next/Prev (réduits de 35px à 30px) */
 .ac__toggle[style*="width: 35px"] {
     width: 30px !important;
     height: 30px !important;
@@ -303,11 +309,10 @@ body {
     opacity: 1;
 }
 
-/* Slider plus discret */
 .ac__slider {
     -webkit-appearance: none;
-    width: 85px; /* Légèrement plus court */
-    height: 2px; /* Encore plus fin */
+    width: 85px;
+    height: 2px;
     background: rgba(255, 255, 255, 0.1);
     outline: none;
 }
