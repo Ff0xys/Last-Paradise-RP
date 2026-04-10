@@ -80,56 +80,73 @@ const pageData = {
     rules: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">RÈGLEMENTS DE LA CITÉ</h2>
         <div style="display: flex; flex-direction: column; gap: 15px; max-width: 700px; margin: 0 auto;">
-            
             <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #46a5e5;">
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <span style="color: #46a5e5; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT GÉNÉRAL</span>
                     <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Bases fondamentales du serveur</span>
                 </div>
-                <a href="${rulesLinks.serveur}" target="_blank" style="background: #46a5e5; color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Lire le doc</a>
+                <a href="${rulesLinks.serveur}" target="_blank" style="background: #46a5e5; color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;">Lire le doc</a>
             </div>
-
             <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #2980b9;">
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <span style="color: #2980b9; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT SASP</span>
                     <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Code de conduite des forces de l'ordre</span>
                 </div>
-                <a href="${rulesLinks.sasp}" target="_blank" style="background: #2980b9; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Lire le doc</a>
+                <a href="${rulesLinks.sasp}" target="_blank" style="background: #2980b9; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;">Lire le doc</a>
             </div>
-
             <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #e74c3c;">
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <span style="color: #e74c3c; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT SAMR</span>
                     <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Protocoles médicaux et secours</span>
                 </div>
-                <a href="${rulesLinks.samr}" target="_blank" style="background: #e74c3c; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Lire le doc</a>
+                <a href="${rulesLinks.samr}" target="_blank" style="background: #e74c3c; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;">Lire le doc</a>
             </div>
-
             <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #9370DB;">
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <span style="color: #9370DB; font-weight: bold; font-size: 18px; text-transform: uppercase;">RÈGLEMENT ILLÉGAL</span>
                     <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Activités et groupes criminels</span>
                 </div>
-                <a href="${rulesLinks.illegal}" target="_blank" style="background: #9370DB; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Lire le doc</a>
+                <a href="${rulesLinks.illegal}" target="_blank" style="background: #9370DB; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase;">Lire le doc</a>
             </div>
         </div>
     `,
     keys: `
-        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">MAPPAGE CLAVIER</h2>
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 800px; margin: 0 auto;">
-            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
-                <span>Téléphone</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">F1</kbd>
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">TOUCHES DU SERVEUR</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto; font-family: 'Rajdhani';">
+            
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div class="key-item"><span>Se cacher</span><kbd>A</kbd></div>
+                <div class="key-item"><span>Pointer / Ceinture</span><kbd>B</kbd></div>
+                <div class="key-item"><span>Champs de vision</span><kbd>C</kbd></div>
+                <div class="key-item"><span>S'asseoir</span><kbd>E</kbd></div>
+                <div class="key-item"><span>Croiser les bras</span><kbd>H</kbd></div>
+                <div class="key-item"><span>Tête / Boîte à gants</span><kbd>K</kbd></div>
+                <div class="key-item"><span>Menu ESC</span><kbd>P</kbd></div>
+                <div class="key-item"><span>Chat InGame</span><kbd>T</kbd></div>
+                <div class="key-item"><span>Véhicule / Tomber</span><kbd>U</kbd></div>
+                <div class="key-item"><span>Vue (1ère/3ème)</span><kbd>V</kbd></div>
+                <div class="key-item"><span>Lever bras / Stop Anim</span><kbd>X</kbd></div>
+                <div class="key-item"><span>Tomber / Se relever</span><kbd>Y</kbd></div>
             </div>
-            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
-                <span>Inventaire</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">F2</kbd>
-            </div>
-            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
-                <span>Animations</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">F3</kbd>
-            </div>
-            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center;">
-                <span>Menu Personnel</span> <kbd style="background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold;">F5</kbd>
+
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div class="key-item"><span>Téléphone</span><kbd>F1</kbd></div>
+                <div class="key-item"><span>Menu Animations</span><kbd>F3</kbd></div>
+                <div class="key-item"><span>Menu Personnel</span><kbd>F5</kbd></div>
+                <div class="key-item"><span>Menu Job</span><kbd>F6</kbd></div>
+                <div class="key-item"><span>Menu Vêtements</span><kbd>F7</kbd></div>
+                <div class="key-item"><span>Portée de la voix</span><kbd>F11</kbd></div>
+                <div class="key-item"><span>Capture Steam</span><kbd>F12</kbd></div>
+                <div class="key-item"><span>Inventaire</span><kbd>TAB</kbd></div>
+                <div class="key-item"><span>Interaction</span><kbd>ALT</kbd></div>
+                <div class="key-item"><span>S'accroupir</span><kbd>CTRL G</kbd></div>
+                <div class="key-item"><span>Raccourcis Inventaire</span><kbd>1-5</kbd></div>
             </div>
         </div>
+        <style>
+            .key-item { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center; }
+            .key-item kbd { background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; min-width: 30px; text-align: center; }
+        </style>
     `,
     staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
     streams: `<h2>DIFFUSIONS EN DIRECT</h2><div id="stream-list"></div>`,
@@ -187,7 +204,7 @@ function openView(id) {
                                 <span style="color: #46a5e5; font-weight: bold; font-size: 18px; text-transform: uppercase;">${s.streamer}</span>
                                 <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Incarne : ${s.character}</span>
                             </div>
-                            <a href="${s.url}" target="_blank" style="background: #6441a5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: bold; transition: 0.3s;">TWITCH</a>
+                            <a href="${s.url}" target="_blank" style="background: #6441a5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s;">TWITCH</a>
                         </div>`;
                 }
             });
