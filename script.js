@@ -91,19 +91,19 @@ const pageData = {
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">RÈGLEMENTS DE LA CITÉ</h2>
         <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto;">
             <div class="list-item-row" style="border-color: #46a5e5;">
-                <div class="text-info"><strong>RÈGLEMENT GÉNÉRAL</strong><span>Bases fondamentales</span></div>
+                <div class="text-info"><strong>RÈGLEMENT GÉNÉRAL</strong><span>Bases fondamentales du serveur</span></div>
                 <a href="${rulesLinks.serveur}" target="_blank" class="action-btn" style="background: #46a5e5;">LIRE LE DOC</a>
             </div>
             <div class="list-item-row" style="border-color: #2980b9;">
-                <div class="text-info"><strong>RÈGLEMENT SASP</strong><span>Forces de l'ordre</span></div>
+                <div class="text-info"><strong>RÈGLEMENT SASP</strong><span>Code de conduite des forces de l'ordre</span></div>
                 <a href="${rulesLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9;">LIRE LE DOC</a>
             </div>
             <div class="list-item-row" style="border-color: #e74c3c;">
-                <div class="text-info"><strong>RÈGLEMENT SAMR</strong><span>Santé et Secours</span></div>
+                <div class="text-info"><strong>RÈGLEMENT SAMR</strong><span>Protocoles médicaux et secours</span></div>
                 <a href="${rulesLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c;">LIRE LE DOC</a>
             </div>
             <div class="list-item-row" style="border-color: #9370DB;">
-                <div class="text-info"><strong>RÈGLEMENT ILLÉGAL</strong><span>Groupes criminels</span></div>
+                <div class="text-info"><strong>RÈGLEMENT ILLÉGAL</strong><span>Activités et groupes criminels</span></div>
                 <a href="${rulesLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB;">LIRE LE DOC</a>
             </div>
         </div>
@@ -112,10 +112,10 @@ const pageData = {
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">TOUCHES DU SERVEUR</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto;">
             <div style="display: flex; flex-direction: column; gap: 8px;">
-                <div class="key-item"><span>Se cacher / Discrétion</span><kbd>A</kbd></div>
+                <div class="key-item"><span>Se cacher</span><kbd>A</kbd></div>
                 <div class="key-item"><span>Pointer / Ceinture</span><kbd>B</kbd></div>
                 <div class="key-item"><span>Champs de vision</span><kbd>C</kbd></div>
-                <div class="key-item"><span>S'asseoir / Interaction</span><kbd>E</kbd></div>
+                <div class="key-item"><span>S'asseoir</span><kbd>E</kbd></div>
                 <div class="key-item"><span>Croiser les bras</span><kbd>H</kbd></div>
                 <div class="key-item"><span>Tête / Boîte à gants</span><kbd>K</kbd></div>
                 <div class="key-item"><span>Menu ESC</span><kbd>P</kbd></div>
@@ -140,20 +140,45 @@ const pageData = {
             </div>
         </div>
     `,
-    paradise: `
+    discord: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">NOS DISCORDS</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto;">
-            <a href="${discordLinks.general}" target="_blank" class="discord-card" style="border-left: 5px solid #5865F2;"><span>🌐</span> <strong>Général</strong></a>
-            <a href="${discordLinks.illegal}" target="_blank" class="discord-card" style="border-left: 5px solid #9370DB;"><span>🎭</span> <strong>Illégal</strong></a>
-            <a href="${discordLinks.sasp}" target="_blank" class="discord-card" style="border-left: 5px solid #2980b9;"><span>🚔</span> <strong>SASP</strong></a>
-            <a href="${discordLinks.gouv}" target="_blank" class="discord-card" style="border-left: 5px solid #f1c40f;"><span>🏛️</span> <strong>Gouvernement</strong></a>
-            <a href="${discordLinks.samr}" target="_blank" class="discord-card" style="border-left: 5px solid #e74c3c;"><span>🚑</span> <strong>SAMR</strong></a>
-            <a href="${discordLinks.immo}" target="_blank" class="discord-card" style="border-left: 5px solid #2ecc71;"><span>🏠</span> <strong>Agence Immo</strong></a>
-            <a href="${discordLinks.pdm}" target="_blank" class="discord-card" style="border-left: 5px solid #e67e22;"><span>🏎️</span> <strong>Motorsport (PDM)</strong></a>
+        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 750px; margin: 0 auto;">
+            <div class="list-item-row" style="border-color: #5865F2;">
+                <div class="text-info"><strong>DISCORD GÉNÉRAL</strong><span>Le cœur de la communauté, toutes les infos ici</span></div>
+                <a href="${discordLinks.general}" target="_blank" class="action-btn" style="background: #5865F2;">REJOINDRE</a>
+            </div>
+            <div class="list-item-row" style="border-color: #9370DB;">
+                <div class="text-info"><strong>DISCORD ILLÉGAL</strong><span>Dédié aux projets de l'ombre et gangs</span></div>
+                <a href="${discordLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB;">REJOINDRE</a>
+            </div>
+            <div class="list-item-row" style="border-color: #2980b9;">
+                <div class="text-info"><strong>DISCORD SASP</strong><span>Communications radio et dossiers de police</span></div>
+                <a href="${discordLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9;">REJOINDRE</a>
+            </div>
+            <div class="list-item-row" style="border-color: #f1c40f;">
+                <div class="text-info"><strong>GOUVERNEMENT</strong><span>Lois de la cité et demandes officielles</span></div>
+                <a href="${discordLinks.gouv}" target="_blank" class="action-btn" style="background: #f1c40f; color: black;">REJOINDRE</a>
+            </div>
+            <div class="list-item-row" style="border-color: #e74c3c;">
+                <div class="text-info"><strong>DISCORD SAMR</strong><span>Prises de service et rapports médicaux</span></div>
+                <a href="${discordLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c;">REJOINDRE</a>
+            </div>
+            <div class="list-item-row" style="border-color: #2ecc71;">
+                <div class="text-info"><strong>AGENCE IMMO</strong><span>Gestion de vos propriétés et locations</span></div>
+                <a href="${discordLinks.immo}" target="_blank" class="action-btn" style="background: #2ecc71;">REJOINDRE</a>
+            </div>
+            <div class="list-item-row" style="border-color: #e67e22;">
+                <div class="text-info"><strong>PDM MOTORSPORT</strong><span>Le rendez-vous des passionnés de mécanique</span></div>
+                <a href="${discordLinks.pdm}" target="_blank" class="action-btn" style="background: #e67e22;">REJOINDRE</a>
+            </div>
         </div>
-        <div style="text-align: center; margin-top: 40px; padding: 20px; border: 1px dashed #46a5e5; border-radius: 10px; background: rgba(0,0,0,0.5);">
-            <h3 style="color:#46a5e5; margin-bottom: 10px;">REJOINDRE LE SERVEUR</h3>
-            <p>F8 > <code>connect lastparadise.fr</code></p>
+    `,
+    paradise: `
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">REJOINDRE LA CITÉ</h2>
+        <div style="text-align: center; margin-top: 40px; padding: 40px; border: 1px dashed #46a5e5; border-radius: 10px; background: rgba(0,0,0,0.5); max-width: 600px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 1.2em; margin-bottom: 20px;">Pour vous connecter instantanément, ouvrez votre console <strong>F8</strong> et collez la commande suivante :</p>
+            <code style="background: #000; padding: 15px; color: #46a5e5; border-radius: 5px; font-size: 24px; border: 1px solid #46a5e5; display: block; margin-bottom: 20px;">connect lastparadise.fr</code>
+            <p style="color: rgba(255,255,255,0.6);">Assurez-vous que votre application FiveM est lancée.</p>
         </div>
     `,
     staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
@@ -165,15 +190,14 @@ const pageData = {
 // --- CSS DYNAMIQUE ---
 const styleSheet = document.createElement("style");
 styleSheet.innerHTML = `
-    .list-item-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 5px solid; margin-bottom: 10px; }
+    .list-item-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 5px solid; margin-bottom: 10px; font-family: 'Rajdhani'; }
     .text-info { display: flex; flex-direction: column; gap: 4px; }
-    .text-info strong { color: white; font-size: 18px; }
+    .text-info strong { color: white; font-size: 18px; text-transform: uppercase; }
     .text-info span { color: rgba(255,255,255,0.6); font-size: 14px; }
-    .action-btn { color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 13px; }
-    .key-item { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+    .action-btn { color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 13px; text-align: center; min-width: 100px; }
+    .action-btn:hover { filter: brightness(1.2); transform: scale(1.05); }
+    .key-item { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px solid rgba(70,165,229,0.2); display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-family: 'Rajdhani'; }
     .key-item kbd { background: #46a5e5; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
-    .discord-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; text-decoration: none; color: white; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
-    .discord-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.1); }
 `;
 document.head.appendChild(styleSheet);
 
