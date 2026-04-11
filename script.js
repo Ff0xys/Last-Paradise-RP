@@ -8,6 +8,7 @@
     --modal-bg: rgba(10, 5, 20, 0.55);
 }
 
+/* --- RESET & BASE --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body { 
@@ -115,16 +116,16 @@ body {
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px #00ff88; }
+    50% { opacity: 0.4; transform: scale(0.8); box-shadow: 0 0 0px #00ff88; }
 }
 
-/* --- VIEWER --- */
+/* --- VIEWER & SCROLLBAR --- */
 .viewer { 
     display: none; 
     position: fixed; 
     inset: 0; 
-    background: rgba(0,0,0,0.7); 
+    background: rgba(0,0,0,0.8); 
     z-index: 1000; 
     padding: 40px; 
     animation: fadeIn 0.4s ease;
@@ -132,20 +133,53 @@ body {
 
 .viewer__body { 
     max-width: 1200px; 
-    width: 70%; 
-    margin: 5vh auto; 
+    width: 75%; 
+    margin: 2vh auto; 
     background: var(--modal-bg);
-    backdrop-filter: blur(15px) saturate(160%);
-    -webkit-backdrop-filter: blur(15px) saturate(160%);
-    border: 1px solid rgba(68, 221, 255, 0.3);
+    backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(68, 221, 255, 0.2);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     padding: 45px;
     color: #f0f0f0;
     overflow-y: auto;
-    max-height: 85vh;
+    max-height: 90vh;
     position: relative;
 }
+
+/* Scrollbar Stylisée */
+.viewer__body::-webkit-scrollbar { width: 6px; }
+.viewer__body::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+.viewer__body::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+/* --- TOUCHES DU SERVEUR (KBD) --- */
+kbd {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-family: 'Bebas Neue';
+    font-size: 20px;
+    color: var(--accent);
+    box-shadow: 0 2px 0 var(--accent);
+    margin-left: 10px;
+    display: inline-block;
+    min-width: 30px;
+    text-align: center;
+}
+
+.key-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    margin-bottom: 5px;
+    transition: 0.2s;
+}
+
+.key-item:hover { background: rgba(70, 165, 229, 0.1); }
 
 .close-btn { 
     background: transparent; 
@@ -155,22 +189,15 @@ body {
     font-family: 'Bebas Neue'; 
     font-size: 20px;
     cursor: pointer; 
-    margin-bottom: 40px; 
+    margin-bottom: 30px; 
     transition: 0.3s;
     border-radius: 8px;
 }
 
-.close-btn:hover { 
-    background: var(--accent); 
-    color: #000; 
-}
+.close-btn:hover { background: var(--accent); color: #000; }
 
 /* --- STAFF & ROLES --- */
-.role-item {
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding: 15px 0;
-}
-
+.role-item { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 15px 0; }
 .role-header {
     cursor: pointer;
     font-family: 'Rajdhani';
@@ -181,7 +208,6 @@ body {
     transition: 0.3s;
     letter-spacing: 1px;
 }
-
 .role-header:hover { color: var(--accent); }
 
 .pseudo-reveal {
@@ -191,7 +217,6 @@ body {
     font-size: 26px;
     margin: 12px 0 8px 25px;
     cursor: pointer;
-    letter-spacing: 1px;
     animation: slideDown 0.3s ease;
 }
 
@@ -203,18 +228,14 @@ body {
     padding: 15px;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    border-left: 2px solid rgba(70, 165, 229, 0.3);
-    animation: slideDown 0.3s ease;
+    border-left: 2px solid var(--accent);
 }
 
 .subrole-badge {
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
-    font-family: 'Rajdhani';
     font-weight: 600;
-    letter-spacing: 1px;
 }
 
 .subrole-badge span {
@@ -222,7 +243,6 @@ body {
     height: 8px;
     border-radius: 50%;
     margin-right: 12px;
-    box-shadow: 0 0 5px currentColor;
 }
 
 @keyframes slideDown {
@@ -256,62 +276,42 @@ body {
     background: var(--glass);
     backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
-    padding: 8px 12px;
+    padding: 10px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    transition: all 0.3s ease;
-}
-
-.ac:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--accent);
+    gap: 8px;
 }
 
 .ac__toggle {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid var(--glass-border) !important;
-    color: #fff !important;
-    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--accent);
+    color: #fff;
+    border-radius: 50%;
     cursor: pointer;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.2s;
 }
 
-.ac__toggle:not([style*="width"]) {
-    width: 40px !important;
-    height: 40px !important;
-    font-size: 16px !important;
-    border-color: var(--accent) !important;
-}
-
-.ac__toggle[style*="width: 35px"] {
-    width: 30px !important;
-    height: 30px !important;
-    font-size: 10px !important;
-    opacity: 0.6;
-}
-
-.ac__toggle:hover {
-    background: var(--accent) !important;
-    color: #000 !important;
-    opacity: 1;
-}
+.ac__toggle:hover { background: var(--accent); color: #000; }
 
 .ac__slider {
     -webkit-appearance: none;
-    width: 85px;
-    height: 2px;
+    width: 80px;
+    height: 3px;
     background: rgba(255, 255, 255, 0.1);
     outline: none;
+    border-radius: 5px;
 }
 
 .ac__slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background: var(--accent);
-    border
+    border-radius: 50%;
+    cursor: pointer;
+}
