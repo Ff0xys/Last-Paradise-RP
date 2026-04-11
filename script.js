@@ -39,29 +39,61 @@ const photosV1 = [
 
 let currentTrackIndex = 0;
 
-// --- LOGIQUE MUSIQUE ---
+// --- LOGIQUE MUSIQUE CORRIGÉE ---
 const music = document.getElementById('bgMusic');
 const musicIcon = document.getElementById('music-icon');
 const slider = document.getElementById('volumeSlider');
 
-function loadTrack(index) { if (music) { music.src = playlist[index]; music.load(); } }
+function loadTrack(index) { 
+    if (music) { 
+        music.src = playlist[index]; 
+        music.load(); 
+    } 
+}
+
+// Initialisation du volume au chargement
+if (music && slider) music.volume = slider.value;
 
 window.toggleMusic = function() {
     if (!music) return;
-    if (!music.getAttribute('src')) loadTrack(currentTrackIndex);
+    
+    // Si aucune source n'est chargée, on met la première
+    if (!music.src || music.src === "") loadTrack(currentTrackIndex);
+
     if (music.paused) { 
         music.volume = slider ? slider.value : 0.3; 
-        music.play().catch(e => console.log("Lecture bloquée par le navigateur")); 
-        if(musicIcon) musicIcon.innerText = '⏸'; 
+        music.play()
+            .then(() => { if(musicIcon) musicIcon.innerText = '⏸'; })
+            .catch(e => {
+                console.log("Lecture bloquée : cliquez sur la page d'abord.");
+                alert("Cliquez n'importe où sur la page pour autoriser la musique.");
+            }); 
     }
-    else { music.pause(); if(musicIcon) musicIcon.innerText = '▶'; }
+    else { 
+        music.pause(); 
+        if(musicIcon) musicIcon.innerText = '▶'; 
+    }
 };
 
-window.nextTrack = function() { currentTrackIndex = (currentTrackIndex + 1) % playlist.length; loadTrack(currentTrackIndex); music.play(); };
-window.prevTrack = function() { currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length; loadTrack(currentTrackIndex); music.play(); };
-window.changeVolume = function(v) { if (music) music.volume = v; };
+window.nextTrack = function() { 
+    currentTrackIndex = (currentTrackIndex + 1) % playlist.length; 
+    loadTrack(currentTrackIndex); 
+    music.play().then(() => { if(musicIcon) musicIcon.innerText = '⏸'; }); 
+};
 
-// Liens Externes
+window.prevTrack = function() { 
+    currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length; 
+    loadTrack(currentTrackIndex); 
+    music.play().then(() => { if(musicIcon) musicIcon.innerText = '⏸'; }); 
+};
+
+window.changeVolume = function(v) { 
+    if (music) music.volume = v; 
+};
+
+// --- FIN LOGIQUE MUSIQUE ---
+
+// Liens Externes (Le reste du code reste inchangé)
 const rulesLinks = {
     serveur: "https://docs.google.com/document/d/1VKb4eJfoqYuEnPFZy3VIKV6PoWm3KQioFci5E1cw3Xw/edit?usp=sharing",
     sasp: "https://docs.google.com/document/d/1crPjZrpPJnh5xr65boi8iLPaJLq72QiKrjugdM4gBss/edit?usp=sharing",
@@ -137,7 +169,6 @@ const pageData = {
     keys: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px; letter-spacing: 2px;">TOUCHES DU SERVEUR</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
-            
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <div class="key-item"><span>Se cacher</span><kbd>A</kbd></div>
                 <div class="key-item"><span>Pointer du doigt / Ceinture</span><kbd>B</kbd></div>
@@ -152,7 +183,6 @@ const pageData = {
                 <div class="key-item"><span>Lever bras / Stop Anim</span><kbd>X</kbd></div>
                 <div class="key-item"><span>Tomber / Se relever</span><kbd>Y</kbd></div>
             </div>
-
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <div class="key-item"><span>Téléphone</span><kbd>F1</kbd></div>
                 <div class="key-item"><span>Menu animations</span><kbd>F3</kbd></div>
@@ -171,7 +201,6 @@ const pageData = {
     discord: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px; letter-spacing: 2px;">NOS DISCORDS</h2>
         <div style="display: flex; flex-direction: column; gap: 12px; max-width: 800px; margin: 0 auto;">
-            
             <div class="list-item-row" style="border-left: 4px solid #5865F2; background: rgba(88,101,242,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
                 <div class="text-info">
                     <strong style="font-size: 20px; color: #fff;">DISCORD GÉNÉRAL</strong><br>
@@ -179,7 +208,6 @@ const pageData = {
                 </div>
                 <a href="${discordLinks.general}" target="_blank" class="action-btn" style="background: #5865F2; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
-
             <div class="list-item-row" style="border-left: 4px solid #2980b9; background: rgba(41,128,185,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
                 <div class="text-info">
                     <strong style="font-size: 20px; color: #fff;">DISCORD SASP</strong><br>
@@ -187,7 +215,6 @@ const pageData = {
                 </div>
                 <a href="${discordLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
-
             <div class="list-item-row" style="border-left: 4px solid #e74c3c; background: rgba(231,76,60,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
                 <div class="text-info">
                     <strong style="font-size: 20px; color: #fff;">DISCORD SAMR</strong><br>
@@ -195,7 +222,6 @@ const pageData = {
                 </div>
                 <a href="${discordLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
-
             <div class="list-item-row" style="border-left: 4px solid #9370DB; background: rgba(147,112,219,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
                 <div class="text-info">
                     <strong style="font-size: 20px; color: #fff;">DISCORD ILLÉGAL</strong><br>
@@ -203,7 +229,6 @@ const pageData = {
                 </div>
                 <a href="${discordLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
-
             <div class="list-item-row" style="border-left: 4px solid #f1c40f; background: rgba(241,196,15,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
                 <div class="text-info">
                     <strong style="font-size: 20px; color: #fff;">DISCORD GOUVERNEMENT</strong><br>
@@ -211,7 +236,6 @@ const pageData = {
                 </div>
                 <a href="${discordLinks.gouv}" target="_blank" class="action-btn" style="background: #f1c40f; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: #000; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
-
             <div class="list-item-row" style="border-left: 4px solid #27ae60; background: rgba(39,174,96,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
                 <div class="text-info">
                     <strong style="font-size: 20px; color: #fff;">DISCORD IMMOBILIER</strong><br>
@@ -219,7 +243,6 @@ const pageData = {
                 </div>
                 <a href="${discordLinks.immo}" target="_blank" class="action-btn" style="background: #27ae60; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
-
             <div class="list-item-row" style="border-left: 4px solid #e67e22; background: rgba(230,126,34,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
                 <div class="text-info">
                     <strong style="font-size: 20px; color: #fff;">DISCORD PDM</strong><br>
@@ -227,7 +250,6 @@ const pageData = {
                 </div>
                 <a href="${discordLinks.pdm}" target="_blank" class="action-btn" style="background: #e67e22; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
-
         </div>
     `,
     paradise: `<h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">REJOINDRE LAST PARADISE</h2><div style="display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto;"><div onclick="navigator.clipboard.writeText('connect lastparadise.fr'); alert('Adresse copiée !');" style="background: #000; padding: 20px; border-radius: 8px; border: 2px solid #46a5e5; text-align: center; cursor: pointer;"><code style="color: #46a5e5; font-size: 24px; font-weight: bold;">connect lastparadise.fr</code><p style="color: white; font-size: 12px; margin-top: 5px;">CLIQUEZ POUR COPIER (F8 ensuite)</p></div></div>`,
