@@ -5,7 +5,7 @@
     --bg-overlay: rgba(0, 0, 0, 0.75); 
     --glass: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.12);
-    --modal-bg: rgba(10, 5, 20, 0.95);
+    --modal-bg: rgba(5, 5, 10, 0.98);
 }
 
 /* --- RESET & BASE --- */
@@ -20,27 +20,72 @@ body {
     font-family: 'Rajdhani', sans-serif; 
     height: 100vh;
     width: 100vw;
-    overflow-x: hidden;
+    overflow: hidden; 
 }
 
-.home {
-    background: var(--bg-overlay);
-    min-height: 100vh;
-    backdrop-filter: blur(4px);
+/* --- LECTEUR HUD À PLAT (SANS BANDE) --- */
+.music-player {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: transparent; 
     display: flex;
-    flex-direction: column;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    z-index: 9999;
+    padding: 0 20px;
 }
 
-/* --- GRID RESPONSIVE --- */
+.music-btn {
+    background: none !important;
+    border: none !important;
+    color: var(--accent);
+    font-size: 26px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-shadow: 0 0 15px rgba(70, 165, 229, 0.8);
+}
+
+.music-btn:hover {
+    color: #fff;
+    transform: scale(1.2);
+    text-shadow: 0 0 20px var(--accent);
+}
+
+#volumeSlider {
+    -webkit-appearance: none;
+    width: 120px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    outline: none;
+    filter: drop-shadow(0 0 5px var(--accent));
+}
+
+#volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* --- GRILLE 3x3 FULL SCREEN --- */
 .grid { 
-    flex: 1;
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(3, 1fr);    
     gap: 15px; 
-    padding: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
+    padding: 15px;
+    width: 100vw;
+    height: calc(100vh - 80px); 
+    margin-top: 80px;
 }
 
 /* --- TUILES --- */
@@ -52,16 +97,16 @@ body {
     border: 1px solid var(--glass-border); 
     text-decoration: none; 
     overflow: hidden; 
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
-    border-radius: 15px;
-    min-height: 200px;
+    transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    border-radius: 12px;
+    cursor: pointer; /* Ajouté pour indiquer que c'est cliquable */
 }
 
 .tile:hover { 
     border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.07);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(70, 165, 229, 0.2);
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(70, 165, 229, 0.2);
+    z-index: 10;
 }
 
 .tile__bg { 
@@ -69,144 +114,95 @@ body {
     inset: 0; 
     background-size: cover; 
     background-position: center; 
-    filter: brightness(0.4) saturate(0.8); 
-    transition: 0.6s; 
-    z-index: 1;
+    filter: brightness(0.4); 
+    transition: 0.6s;
 }
 
-.tile:hover .tile__bg { filter: brightness(0.6) saturate(1.1); transform: scale(1.05); }
+.tile:hover .tile__bg { filter: brightness(0.6); transform: scale(1.1); }
 
 .tile__content { 
     padding: 25px; 
     position: relative; 
     z-index: 2; 
     width: 100%; 
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 40%, transparent);
 }
 
 .tile__label { 
-    display: block; 
     font-family: 'Bebas Neue'; 
-    font-size: clamp(30px, 4vw, 50px); 
+    font-size: clamp(30px, 4vw, 55px); 
     color: var(--accent); 
-    text-shadow: 0 0 20px rgba(70, 165, 229, 0.5);
-    letter-spacing: 3px; 
+    text-shadow: 0 0 15px rgba(70, 165, 229, 0.5);
     line-height: 0.9;
     margin-bottom: 5px;
+    display: block;
 }
 
-/* --- VIEWER ÉLARGI PC & LECTURE --- */
+.tile__content p {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+    max-width: 95%;
+}
+
+/* --- VIEWER FULL SCREEN (CORRIGÉ) --- */
 .viewer { 
     display: none; 
     position: fixed; 
     inset: 0; 
-    background: rgba(0,0,0,0.9); 
-    z-index: 1000; 
-    padding: 20px; 
-    animation: fadeIn 0.4s ease;
+    background: rgba(0,0,0,0.98); 
+    z-index: 10000; 
+}
+
+/* LA RÈGLE CRUCIALE POUR L'AFFICHAGE */
+.viewer.active { 
+    display: block !important; 
 }
 
 .viewer__body { 
-    max-width: 1250px; /* Occupation maximale sur PC */
-    width: 95%; 
-    margin: 3vh auto; 
-    background: var(--modal-bg);
-    backdrop-filter: blur(25px);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    padding: 60px; /* Plus d'espace interne */
+    width: 100vw;
+    height: 100vh;
+    padding: 120px 10% 60px 10%; 
     color: #f0f0f0;
     overflow-y: auto;
-    max-height: 85vh;
-    line-height: 1.6;
-    font-size: 20px; /* Texte plus grand pour remplir l'espace */
+    font-size: 22px;
+    line-height: 1.8;
+    position: relative;
 }
 
-#viewer-content p {
-    margin-bottom: 25px;
-    color: rgba(255, 255, 255, 0.9);
-    text-align: justify;
-}
-
-/* --- LECTEUR MUSIQUE MODERNE (BARRE FIXE) --- */
-.music-player {
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(15px);
-    border-top: 2px solid var(--accent);
-    padding: 15px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
+/* BOUTON FERMER DANS LE VIEWER */
+.close-btn {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2000;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
-}
-
-#volumeSlider {
-    width: 120px;
-    accent-color: var(--accent);
-    cursor: pointer;
-}
-
-.music-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--glass-border);
-    color: var(--accent);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-    font-size: 16px;
-}
-
-.music-btn:hover {
+    top: 30px;
+    right: 50px;
     background: var(--accent);
     color: #000;
+    border: none;
+    padding: 10px 25px;
+    font-family: 'Bebas Neue';
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 10001;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    background: #fff;
     transform: scale(1.1);
 }
 
-/* Scrollbar Style */
-.viewer__body::-webkit-scrollbar { width: 6px; }
-.viewer__body::-webkit-scrollbar-track { background: transparent; }
-.viewer__body::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
-
-/* --- TOUCHES KBD --- */
-kbd {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--accent);
-    border-radius: 4px;
-    padding: 2px 8px;
-    font-family: 'Bebas Neue';
-    font-size: 18px;
-    color: var(--accent);
-    box-shadow: 0 2px 0 var(--accent);
-    margin-left: 10px;
-}
-
-/* --- MEDIA QUERIES --- */
-@media (max-width: 1024px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 600px) {
-    .grid { grid-template-columns: 1fr; }
-    .tile { min-height: 150px; }
-    .viewer__body { padding: 25px; margin: 2vh auto; width: 100%; font-size: 18px; }
-    .music-player { padding: 10px; gap: 15px; }
-    #volumeSlider { width: 70px; }
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 800px) {
+    .grid { 
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto; 
+        height: auto; 
+        overflow-y: auto;
+        margin-top: 70px;
+    }
     body { overflow-y: auto; }
-}
-
-/* --- ANIMATIONS --- */
-@keyframes fadeIn { 
-    from { opacity: 0; transform: translateY(10px); } 
-    to { opacity: 1; transform: translateY(0); } 
+    .tile { min-height: 250px; }
 }
