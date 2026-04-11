@@ -6,49 +6,19 @@
     <title>Last Paradise RP</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Correction rapide pour le centrage PC sans modifier ton style.css externe */
-        .home {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            min-height: 100vh;
-            padding: 20px 0;
-        }
-        .grid {
-            max-width: 1200px; /* Largeur max sur PC */
-            width: 90%;
-            margin: 0 auto;
-        }
-        /* Style amélioré pour le lecteur de musique */
-        .ac {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid rgba(70, 165, 229, 0.4);
-            margin-bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-    </style>
 </head>
 <body>
 
 <main class="home">
-    <div class="ac">
-        <div style="display: flex; align-items: center; gap: 20px;">
-            <button class="ac__toggle" onclick="prevTrack()" style="cursor:pointer; background:none; border:none; color:white; font-size: 18px;">⏮</button>
-            <button class="ac__toggle" onclick="toggleMusic()" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #46a5e5; background: rgba(70,165,229,0.1); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-                <span id="music-icon" style="font-size: 20px; margin-left: 3px;">▶</span>
+    <div class="music-player">
+        <div class="music-controls">
+            <button class="music-btn" onclick="prevTrack()">⏮</button>
+            <button class="music-btn" onclick="toggleMusic()">
+                <span id="music-icon">▶</span>
             </button>
-            <button class="ac__toggle" onclick="nextTrack()" style="cursor:pointer; background:none; border:none; color:white; font-size: 18px;">⏭</button>
+            <button class="music-btn" onclick="nextTrack()">⏭</button>
         </div>
-        <div class="ac__panel">
-            <input type="range" class="ac__slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.3" oninput="changeVolume(this.value)" style="width: 120px; cursor: pointer;">
-        </div>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.3" oninput="changeVolume(this.value)">
     </div>
 
     <audio id="bgMusic" preload="auto">
@@ -78,20 +48,19 @@
         <a href="#" class="tile" onclick="openView('staff')"><div class="tile__content"><span class="tile__label">Staff</span><p class="tile__sub">L'Équipe du Serveur</p></div></a>
     </div>
 
-    <div id="viewer" class="viewer" style="display: none;">
-        <div class="viewer__bg"></div>
+    <div id="viewer" class="viewer">
         <div class="viewer__body">
-            <button class="close-btn" onclick="closeView()">← RETOUR AU MENU</button>
+            <button class="close-btn" onclick="closeView()" style="cursor:pointer; background:none; border:1px solid var(--accent); color:var(--accent); padding:10px 20px; font-family:'Bebas Neue'; margin-bottom:20px;">← RETOUR AU MENU</button>
             <div id="viewer-content"></div>
         </div>
     </div>
 
-    <div id="lightbox" class="lightbox" onclick="this.style.display='none'" style="display: none;">
+    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
         <span class="close-lightbox">&times;</span>
         <img id="lightbox-img" src="" alt="Plein écran">
     </div>
 
-    <footer class="footer" style="margin-top: 50px;">
+    <footer class="footer">
         <span class="footer__copy">© 2026 Last Legacy Studio — Lyx_tv</span>
     </footer>
 </main>
