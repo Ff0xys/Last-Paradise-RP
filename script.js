@@ -1,317 +1,293 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap');
+// --- CONFIGURATION ---
+const streamerData = [
+    { streamer: "Lyx_tv", character: "Salvatore Morales", url: "https://twitch.tv/tv_lyx" }
+];
 
-:root { 
-    --accent: #46a5e5; 
-    --bg-overlay: rgba(0, 0, 0, 0.7); 
-    --glass: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --modal-bg: rgba(10, 5, 20, 0.55);
+const staffMembers = [
+    { 
+        pseudo: "LYX_TV", 
+        highestRole: "Fondateur", 
+        allRoles: [
+            { name: "Fondateur", color: "#e74c3c" },
+            { name: "Développeur", color: "#2980b9" },
+            { name: "Streamer", color: "#9370DB" }, 
+            { name: "Citoyen", color: "#ecf0f1" }
+        ] 
+    }
+];
+
+const serverRoles = [
+    "Fondateur", "Responsable Staff", "Responsable Légal", 
+    "Responsable Illégal", "Gérant Légal", "Gérant Illégal", 
+    "Administrateurs", "Modérateurs", "Supports","Supports Test"
+];
+
+const playlist = [
+    "https://files.catbox.moe/ze2akz.mp3",
+    "https://files.catbox.moe/cndtub.mp3",
+    "https://files.catbox.moe/u1gdus.mp3"
+];
+
+const photosV1 = [
+    "https://files.catbox.moe/whueq5.png",
+    "https://files.catbox.moe/su6qae.png",
+    "https://files.catbox.moe/h8edtb.png",
+    "https://files.catbox.moe/n5w76z.png",
+    "https://files.catbox.moe/8ttd47.png",
+    "https://files.catbox.moe/kvfyy2.png"
+];
+
+let currentTrackIndex = 0;
+
+// --- LOGIQUE MUSIQUE ---
+const music = document.getElementById('bgMusic');
+const musicIcon = document.getElementById('music-icon');
+const slider = document.getElementById('volumeSlider');
+
+function loadTrack(index) { if (music) { music.src = playlist[index]; music.load(); } }
+
+window.toggleMusic = function() {
+    if (!music) return;
+    if (!music.getAttribute('src')) loadTrack(currentTrackIndex);
+    if (music.paused) { 
+        music.volume = slider ? slider.value : 0.3; 
+        music.play().catch(e => console.log("Lecture bloquée")); 
+        if(musicIcon) musicIcon.innerText = '⏸'; 
+    }
+    else { music.pause(); if(musicIcon) musicIcon.innerText = '▶'; }
+};
+
+window.nextTrack = function() { currentTrackIndex = (currentTrackIndex + 1) % playlist.length; loadTrack(currentTrackIndex); music.play(); };
+window.prevTrack = function() { currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length; loadTrack(currentTrackIndex); music.play(); };
+window.changeVolume = function(v) { if (music) music.volume = v; };
+
+// Liens Externes
+const rulesLinks = {
+    serveur: "https://docs.google.com/document/d/1VKb4eJfoqYuEnPFZy3VIKV6PoWm3KQioFci5E1cw3Xw/edit?usp=sharing",
+    sasp: "https://docs.google.com/document/d/1crPjZrpPJnh5xr65boi8iLPaJLq72QiKrjugdM4gBss/edit?usp=sharing",
+    samr: "https://docs.google.com/document/d/1NX0qZMNN1z72jVv1H4CBPrSq-J1vq3TbG86GYse2ROM/edit?usp=sharing",
+    illegal: "https://docs.google.com/document/d/14vTxocrhfBv-ysWS7h1hYzh0L5YHVKH1nb5oeo1sj_Y/edit?usp=sharing"
+};
+
+const discordLinks = {
+    general: "https://discord.gg/WcenP4vcjY",
+    illegal: "https://discord.gg/YHCWdwgvk7",
+    sasp: "https://discord.gg/bWyGBhChUX",
+    gouv: "https://discord.gg/wxnurk5ZG7",
+    samr: "https://discord.gg/XHQrEpKBTH",
+    immo: "https://discord.gg/cbtWQpqXVj",
+    pdm: "https://discord.gg/2BXxf5fjTy"
+};
+
+const pageData = {
+    lore: `
+        <div style="max-width: 800px; margin: 0 auto; line-height: 1.7; text-align: justify; font-family: 'Rajdhani', sans-serif;">
+            <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; letter-spacing: 3px; text-align: center; margin-bottom: 40px; text-shadow: 0 0 15px rgba(70, 165, 229, 0.4);">
+                L'ÉCHO DU MONT CHILIAD
+            </h2>
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Tout a commencé par un mirage doré au début des années 2000, quand des milliards de dollars issus de fonds fédéraux "évaporés" ont fait sortir de terre <strong>Last Paradise</strong>, une enclave de luxe qui n'était en réalité qu'un laboratoire social à ciel ouvert pour une cellule grise d'agents renégats du FIB et de l'IAA. Sous le nom de code <strong>"The Styx"</strong>, ces hommes de l'ombre n'étaient pas de simples investisseurs, mais des architectes du chaos qui ont bâti un empire criminel intouchable, avant d'être officiellement traqués par Washington en 2021.
+            </p>
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Mais alors que les communiqués annonçaient leur fuite, la réalité de 2026 est devenue un cauchemar éveillé : le Gouverneur actuel a instauré un plan de "Renaissance" d'une violence inouïe, asphyxiant les citoyens sous des taxes et une surveillance paranoïaque pour reconstruire une façade de gloire sur le dos d'une population qui lutte pour sa survie.
+            </p>
+            <p style="font-size: 26px; color: #46a5e5; text-align: center; font-family: 'Bebas Neue'; letter-spacing: 2px; margin-bottom: 25px;">"ILS NE SONT JAMAIS PARTIS."</p>
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Pourtant, dans les bas-fonds, cette phrase revient comme un murmure terrifiant que personne n'ose crier. Au nord, autour d'un <strong>Mont Chiliad</strong> bouclé par des restrictions discrètes, l'inquiétude grandit.
+            </p>
+            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                Des convois anonymes s'engouffrent régulièrement dans les entrailles de la montagne sans laisser de trace, laissant planer l'ombre d'un complot qui dépasse l'entendement. Quelque chose s'est réveillé sous leurs pieds, et personne ne sait encore quel rôle il est censé jouer.
+            </p>
+            <h3 style="font-family: 'Bebas Neue'; font-size: 35px; color: #f1c40f; text-align: center; letter-spacing: 2px;">MAINTENANT C'EST À VOUS D'ÉCRIRE VOTRE PROPRE HISTOIRE</h3>
+        </div>
+    `,
+    rules: `
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">RÈGLEMENTS DU TERRITOIRE</h2>
+        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 750px; margin: 0 auto;">
+            <div class="list-item-row" style="border-color: #46a5e5; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                <div class="text-info"><strong style="color: #46a5e5; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT GÉNÉRAL &nbsp;&nbsp; : &nbsp;&nbsp;</strong><span style="color: rgba(255,255,255,0.7);">Bases fondamentales et vie en communauté.</span></div>
+                <a href="${rulesLinks.serveur}" target="_blank" class="action-btn" style="background: #46a5e5; padding: 12px 25px; border-radius: 5px; color: #000; font-weight: 800; text-decoration: none;">CONSULTER</a>
+            </div>
+            <div class="list-item-row" style="border-color: #2980b9; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                <div class="text-info"><strong style="color: #2980b9; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT SASP &nbsp;&nbsp; : &nbsp;&nbsp;</strong><span style="color: rgba(255,255,255,0.7);">Code de déontologie des forces de l'ordre.</span></div>
+                <a href="${rulesLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9; padding: 12px 25px; border-radius: 5px; color: #fff; font-weight: 800; text-decoration: none;">CONSULTER</a>
+            </div>
+            <div class="list-item-row" style="border-color: #e74c3c; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                <div class="text-info"><strong style="color: #e74c3c; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT SAMR &nbsp;&nbsp; : &nbsp;&nbsp;</strong><span style="color: rgba(255,255,255,0.7);">Protocoles d'urgence et éthique médicale.</span></div>
+                <a href="${rulesLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c; padding: 12px 25px; border-radius: 5px; color: #fff; font-weight: 800; text-decoration: none;">CONSULTER</a>
+            </div>
+            <div class="list-item-row" style="border-color: #9370DB; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                <div class="text-info"><strong style="color: #9370DB; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT ILLÉGAL &nbsp;&nbsp; : &nbsp;&nbsp;</strong><span style="color: rgba(255,255,255,0.7);">Règles concernant les activités criminelles.</span></div>
+                <a href="${rulesLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB; padding: 12px 25px; border-radius: 5px; color: #fff; font-weight: 800; text-decoration: none;">CONSULTER</a>
+            </div>
+        </div>
+    `,
+    keys: `
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px; letter-spacing: 2px;">TOUCHES DU SERVEUR</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; font-family: 'Rajdhani', sans-serif;">
+            
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="key-item"><span><strong>Se cacher</strong></span> &nbsp; : &nbsp; <kbd><strong>A</strong></kbd></div>
+                <div class="key-item"><span><strong>Pointer du doigt / Ceinture</strong></span> &nbsp; : &nbsp; <kbd><strong>B</strong></kbd></div>
+                <div class="key-item"><span><strong>Champs de vision</strong></span> &nbsp; : &nbsp; <kbd><strong>C</strong></kbd></div>
+                <div class="key-item"><span><strong>S'asseoir</strong></span> &nbsp; : &nbsp; <kbd><strong>E</strong></kbd></div>
+                <div class="key-item"><span><strong>Croiser les bras</strong></span> &nbsp; : &nbsp; <kbd><strong>H</strong></kbd></div>
+                <div class="key-item"><span><strong>Tête / Boîte à gants</strong></span> &nbsp; : &nbsp; <kbd><strong>K</strong></kbd></div>
+                <div class="key-item"><span><strong>Menu ESC</strong></span> &nbsp; : &nbsp; <kbd><strong>P</strong></kbd></div>
+                <div class="key-item"><span><strong>Chat InGame</strong></span> &nbsp; : &nbsp; <kbd><strong>T</strong></kbd></div>
+                <div class="key-item"><span><strong>Véhicule / Tomber</strong></span> &nbsp; : &nbsp; <kbd><strong>U</strong></kbd></div>
+                <div class="key-item"><span><strong>1ère / 3ème personne</strong></span> &nbsp; : &nbsp; <kbd><strong>V</strong></kbd></div>
+                <div class="key-item"><span><strong>Lever bras / Stop Anim</strong></span> &nbsp; : &nbsp; <kbd><strong>X</strong></kbd></div>
+                <div class="key-item"><span><strong>Tomber / Se relever</strong></span> &nbsp; : &nbsp; <kbd><strong>Y</strong></kbd></div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="key-item"><span><strong>Téléphone</strong></span> &nbsp; : &nbsp; <kbd><strong>F1</strong></kbd></div>
+                <div class="key-item"><span><strong>Menu animations</strong></span> &nbsp; : &nbsp; <kbd><strong>F3</strong></kbd></div>
+                <div class="key-item"><span><strong>Menu personnel (Licences...)</strong></span> &nbsp; : &nbsp; <kbd><strong>F5</strong></kbd></div>
+                <div class="key-item"><span><strong>Menu Job</strong></span> &nbsp; : &nbsp; <kbd><strong>F6</strong></kbd></div>
+                <div class="key-item"><span><strong>Menu vêtements</strong></span> &nbsp; : &nbsp; <kbd><strong>F7</strong></kbd></div>
+                <div class="key-item"><span><strong>Portée de la voix</strong></span> &nbsp; : &nbsp; <kbd><strong>F11</strong></kbd></div>
+                <div class="key-item"><span><strong>Capture d'écran Steam</strong></span> &nbsp; : &nbsp; <kbd><strong>F12</strong></kbd></div>
+                
+                <div style="height: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 5px;"></div>
+                
+                <div class="key-item"><span><strong>Raccourcis inventaire</strong></span> &nbsp; : &nbsp; <kbd><strong>1 - 2 - 3 - 4 - 5</strong></kbd></div>
+                <div class="key-item"><span><strong>Interaction (Objets/Persos)</strong></span> &nbsp; : &nbsp; <kbd><strong>ALT</strong></kbd></div>
+                <div class="key-item"><span><strong>S'accroupir</strong></span> &nbsp; : &nbsp; <kbd><strong>CTRL G</strong></kbd></div>
+                <div class="key-item"><span><strong>Inventaire</strong></span> &nbsp; : &nbsp; <kbd><strong>TAB</strong></kbd></div>
+            </div>
+        </div>
+    `,
+    discord: `
+        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px; letter-spacing: 2px;">NOS DISCORDS</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 800px; margin: 0 auto;">
+            
+            <div class="list-item-row" style="border-left: 4px solid #5865F2; background: rgba(88,101,242,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
+                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD GÉNÉRAL</strong>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Le cœur de la communauté et les annonces.</span>
+                </div>
+                <a href="${discordLinks.general}" target="_blank" class="action-btn" style="background: #5865F2; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
+            </div>
+
+            <div class="list-item-row" style="border-left: 4px solid #2980b9; background: rgba(41,128,185,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
+                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD SASP</strong>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Recrutements et informations forces de l'ordre.</span>
+                </div>
+                <a href="${discordLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
+            </div>
+
+            <div class="list-item-row" style="border-left: 4px solid #e74c3c; background: rgba(231,76,60,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
+                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD SAMR</strong>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Protocoles et recrutements médicaux.</span>
+                </div>
+                <a href="${discordLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
+            </div>
+
+            <div class="list-item-row" style="border-left: 4px solid #9370DB; background: rgba(147,112,219,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
+                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD ILLÉGAL</strong>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Gestion des dossiers et activités criminelles.</span>
+                </div>
+                <a href="${discordLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
+            </div>
+
+            <div class="list-item-row" style="border-left: 4px solid #f1c40f; background: rgba(241,196,15,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
+                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD GOUVERNEMENT</strong>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Justice et services publics de l'État.</span>
+                </div>
+                <a href="${discordLinks.gouv}" target="_blank" class="action-btn" style="background: #f1c40f; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: #000; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
+            </div>
+
+            <div class="list-item-row" style="border-left: 4px solid #27ae60; background: rgba(39,174,96,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
+                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD IMMOBILIER</strong>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Gestion des propriétés (Dynasty 8).</span>
+                </div>
+                <a href="${discordLinks.immo}" target="_blank" class="action-btn" style="background: #27ae60; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
+            </div>
+
+            <div class="list-item-row" style="border-left: 4px solid #e67e22; background: rgba(230,126,34,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
+                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD PDM</strong>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Vente de véhicules et catalogues.</span>
+                </div>
+                <a href="${discordLinks.pdm}" target="_blank" class="action-btn" style="background: #e67e22; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
+            </div>
+
+        </div>
+    `,
+    paradise: `<h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">REJOINDRE LAST PARADISE</h2><div style="display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto;"><div onclick="navigator.clipboard.writeText('connect lastparadise.fr'); alert('Adresse copiée !');" style="background: #000; padding: 20px; border-radius: 8px; border: 2px solid #46a5e5; text-align: center; cursor: pointer;"><code style="color: #46a5e5; font-size: 24px; font-weight: bold;">connect lastparadise.fr</code><p style="color: white; font-size: 12px; margin-top: 5px;">CLIQUEZ POUR COPIER (F8 ensuite)</p></div></div>`,
+    staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
+    streams: `<h2>DIFFUSIONS EN DIRECT</h2><div id="stream-list"></div>`,
+    galerie: `<h2>ARCHIVES LAST PARADISE V1</h2><div id="galerie-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 20px 0;"></div>`,
+    event: `<h2>ÉVÉNEMENTS À VENIR</h2><p style="text-align:center;">Aucun événement prévu pour le moment.</p>`
+};
+
+// --- LOGIQUE D'AFFICHAGE ---
+window.openView = function(id) {
+    const viewer = document.getElementById('viewer');
+    const content = document.getElementById('viewer-content');
+    if (!viewer || !content || !pageData[id]) return;
+    
+    content.innerHTML = pageData[id];
+    viewer.style.display = 'block';
+
+    if (id === 'galerie') {
+        const container = document.getElementById('galerie-container');
+        photosV1.forEach((url, index) => {
+            container.innerHTML += `<div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);"><img src="${url}" style="width: 100%; height: 180px; object-fit: cover; display: block;"><div style="background: rgba(0,0,0,0.5); padding: 5px; text-align: center; font-size: 12px; color: #46a5e5;">SOUVENIR V1 #${index + 1}</div></div>`;
+        });
+    }
+
+    if (id === 'staff') {
+        const container = document.getElementById('roles-container');
+        serverRoles.forEach(roleName => {
+            const roleId = roleName.replace(/\s/g, '');
+            const member = staffMembers.find(m => m.highestRole === roleName);
+            let memberHtml = '';
+            if (member) {
+                memberHtml = `<div id="pseudo-${roleId}" class="pseudo-reveal" onclick="toggleSubRoles('${roleId}')" style="display:none; cursor:pointer; margin-top:10px;">└ ${member.pseudo}</div><div id="subroles-${roleId}" class="subroles-list" style="display:none; flex-direction: column; gap: 8px; margin-left: 40px; margin-top: 10px;">${member.allRoles.map(r => `<div class="subrole-badge"><span style="background:${r.color}"></span>${r.name.toUpperCase()}</div>`).join('')}</div>`;
+            }
+            const roleDiv = document.createElement('div');
+            roleDiv.className = "role-item";
+            roleDiv.innerHTML = `<div class="role-header" onclick="togglePseudo('${roleId}')"><span>${roleName.toUpperCase()}</span><span class="indicator">${member ? '▼' : '○'}</span></div>${memberHtml}`;
+            container.appendChild(roleDiv);
+        });
+    }
+
+    if (id === 'streams') {
+        const list = document.getElementById('stream-list');
+        const searchInput = document.createElement('input');
+        searchInput.type = 'text'; searchInput.placeholder = 'Rechercher un streamer...';
+        searchInput.style = "width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #46a5e5; background: rgba(0,0,0,0.6); color: white;";
+        const resContainer = document.createElement('div');
+        list.appendChild(searchInput); list.appendChild(resContainer);
+
+        const render = (f = "") => {
+            resContainer.innerHTML = "";
+            [...streamerData].sort((a,b)=>a.streamer.localeCompare(b.streamer)).forEach(s => {
+                if (s.streamer.toLowerCase().includes(f.toLowerCase()) || s.character.toLowerCase().includes(f.toLowerCase())) {
+                    resContainer.innerHTML += `
+                    <div class="list-item-row" style="border-left: 4px solid #6441a5; background: rgba(100,65,165,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; margin-bottom: 10px; border-radius: 5px;">
+                        <div class="text-info" style="display: flex; flex-direction: column; gap: 8px;">
+                            <strong style="font-size: 22px; color: #fff;">${s.streamer}</strong>
+                            <span style="color: rgba(255,255,255,0.6); font-size: 16px;">Incarne &nbsp;&nbsp; : &nbsp;&nbsp; <b style="color: #46a5e5;">${s.character}</b></span>
+                        </div>
+                        <a href="${s.url}" target="_blank" class="action-btn" style="background: #6441a5; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">TWITCH</a>
+                    </div>`;
+                }
+            });
+        };
+        searchInput.addEventListener('input', (e) => render(e.target.value));
+        render();
+    }
 }
 
-/* --- RESET & BASE --- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body { 
-    background: url('https://i.postimg.cc/Y0sxrY20/Gemini-Generated-Image-d75xq0d75xq0d75x-(1).png') no-repeat;
-    background-position: center 30%; 
-    background-size: cover;
-    background-attachment: fixed;
-    color: #fff; 
-    font-family: 'Rajdhani', sans-serif; 
-    overflow: hidden;
-}
-
-.home {
-    background: var(--bg-overlay);
-    height: 100vh;
-    backdrop-filter: blur(4px);
-    display: flex;
-    flex-direction: column;
-}
-
-.grid { 
-    flex: 1;
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    grid-template-rows: repeat(3, 1fr); 
-    gap: 15px; 
-    padding: 20px;
-}
-
-/* --- TUILES --- */
-.tile { 
-    position: relative; 
-    display: flex; 
-    align-items: flex-end; 
-    background: var(--glass);
-    border: 1px solid var(--glass-border); 
-    text-decoration: none; 
-    overflow: hidden; 
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
-    border-radius: 15px;
-}
-
-.tile:hover { 
-    border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.07);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(70, 165, 229, 0.2);
-}
-
-.tile__bg { 
-    position: absolute; 
-    inset: 0; 
-    background-size: cover; 
-    background-position: center; 
-    filter: brightness(0.4) saturate(0.8); 
-    transition: 0.6s; 
-}
-
-.tile:hover .tile__bg { filter: brightness(0.6) saturate(1.1); }
-
-.tile__content { 
-    padding: 35px; 
-    position: relative; 
-    z-index: 2; 
-    width: 100%; 
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-}
-
-.tile__label { 
-    display: block; 
-    font-family: 'Bebas Neue'; 
-    font-size: 50px; 
-    color: var(--accent); 
-    text-shadow: 0 0 20px rgba(70, 165, 229, 0.5);
-    letter-spacing: 3px; 
-    line-height: 0.9;
-    margin-bottom: 5px;
-}
-
-.tile__sub { 
-    font-size: 14px; 
-    color: rgba(255,255,255,0.7); 
-    text-transform: uppercase; 
-    letter-spacing: 1.5px;
-    font-weight: 500;
-}
-
-/* --- STATUT --- */
-.tile__status { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    margin-bottom: 12px;
-    font-weight: 700;
-    font-size: 12px;
-}
-
-.tile__dot.online { 
-    width: 10px; 
-    height: 10px; 
-    background: #00ff88; 
-    border-radius: 50%; 
-    box-shadow: 0 0 10px #00ff88;
-    animation: blink 1.5s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px #00ff88; }
-    50% { opacity: 0.4; transform: scale(0.8); box-shadow: 0 0 0px #00ff88; }
-}
-
-/* --- VIEWER & SCROLLBAR --- */
-.viewer { 
-    display: none; 
-    position: fixed; 
-    inset: 0; 
-    background: rgba(0,0,0,0.8); 
-    z-index: 1000; 
-    padding: 40px; 
-    animation: fadeIn 0.4s ease;
-}
-
-.viewer__body { 
-    max-width: 1200px; 
-    width: 75%; 
-    margin: 2vh auto; 
-    background: var(--modal-bg);
-    backdrop-filter: blur(20px) saturate(160%);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    padding: 45px;
-    color: #f0f0f0;
-    overflow-y: auto;
-    max-height: 90vh;
-    position: relative;
-}
-
-/* Scrollbar Stylisée */
-.viewer__body::-webkit-scrollbar { width: 6px; }
-.viewer__body::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
-.viewer__body::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
-
-/* --- TOUCHES DU SERVEUR (KBD) --- */
-kbd {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--accent);
-    border-radius: 4px;
-    padding: 3px 10px;
-    font-family: 'Bebas Neue';
-    font-size: 20px;
-    color: var(--accent);
-    box-shadow: 0 2px 0 var(--accent);
-    margin-left: 10px;
-    display: inline-block;
-    min-width: 30px;
-    text-align: center;
-}
-
-.key-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 6px;
-    margin-bottom: 5px;
-    transition: 0.2s;
-}
-
-.key-item:hover { background: rgba(70, 165, 229, 0.1); }
-
-.close-btn { 
-    background: transparent; 
-    border: 1px solid var(--accent); 
-    color: var(--accent); 
-    padding: 12px 35px; 
-    font-family: 'Bebas Neue'; 
-    font-size: 20px;
-    cursor: pointer; 
-    margin-bottom: 30px; 
-    transition: 0.3s;
-    border-radius: 8px;
-}
-
-.close-btn:hover { background: var(--accent); color: #000; }
-
-/* --- STAFF & ROLES --- */
-.role-item { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 15px 0; }
-.role-header {
-    cursor: pointer;
-    font-family: 'Rajdhani';
-    font-size: 20px;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-    transition: 0.3s;
-    letter-spacing: 1px;
-}
-.role-header:hover { color: var(--accent); }
-
-.pseudo-reveal {
-    display: none; 
-    color: var(--accent);
-    font-family: 'Bebas Neue';
-    font-size: 26px;
-    margin: 12px 0 8px 25px;
-    cursor: pointer;
-    animation: slideDown 0.3s ease;
-}
-
-.subroles-list {
-    display: none; 
-    flex-direction: column;
-    gap: 8px;
-    margin-left: 50px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    border-left: 2px solid var(--accent);
-}
-
-.subrole-badge {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.subrole-badge span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-right: 12px;
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- FOOTER --- */
-.footer {
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    font-family: 'Rajdhani';
-    font-size: 25px;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 1px;
-}
-
-@keyframes fadeIn { 
-    from { opacity: 0; transform: translateY(20px); } 
-    to { opacity: 1; transform: translateY(0); } 
-}
-
-/* --- LECTEUR MUSIQUE --- */
-.ac {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 100;
-    background: var(--glass);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    padding: 10px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.ac__toggle {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--accent);
-    color: #fff;
-    border-radius: 50%;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ac__toggle:hover { background: var(--accent); color: #000; }
-
-.ac__slider {
-    -webkit-appearance: none;
-    width: 80px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.1);
-    outline: none;
-    border-radius: 5px;
-}
-
-.ac__slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 12px;
-    height: 12px;
-    background: var(--accent);
-    border-radius: 50%;
-    cursor: pointer;
-}
+window.togglePseudo = function(id) { const el = document.getElementById('pseudo-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'block' : 'none'; }
+window.toggleSubRoles = function(id) { const el = document.getElementById('subroles-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'flex' : 'none'; }
+window.closeView = function() { document.getElementById('viewer').style.display = 'none'; }
