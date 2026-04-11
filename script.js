@@ -1,290 +1,317 @@
-// --- CONFIGURATION ---
-const streamerData = [
-    { streamer: "Lyx_tv", character: "Salvatore Morales", url: "https://twitch.tv/tv_lyx" }
-];
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap');
 
-const staffMembers = [
-    { 
-        pseudo: "LYX_TV", 
-        highestRole: "Fondateur", 
-        allRoles: [
-            { name: "Fondateur", color: "#e74c3c" },
-            { name: "Développeur", color: "#2980b9" },
-            { name: "Streamer", color: "#9370DB" }, 
-            { name: "Citoyen", color: "#ecf0f1" }
-        ] 
-    }
-];
-
-const serverRoles = [
-    "Fondateur", "Responsable Staff", "Responsable Légal", 
-    "Responsable Illégal", "Gérant Légal", "Gérant Illégal", 
-    "Administrateurs", "Modérateurs", "Supports","Supports Test"
-];
-
-const playlist = [
-    "https://files.catbox.moe/ze2akz.mp3",
-    "https://files.catbox.moe/cndtub.mp3",
-    "https://files.catbox.moe/u1gdus.mp3"
-];
-
-// Liens des photos V1 pour la Galerie
-const photosV1 = [
-    "https://files.catbox.moe/whueq5.png",
-    "https://files.catbox.moe/su6qae.png",
-    "https://files.catbox.moe/h8edtb.png",
-    "https://files.catbox.moe/n5w76z.png",
-    "https://files.catbox.moe/8ttd47.png",
-    "https://files.catbox.moe/kvfyy2.png"
-];
-
-let currentTrackIndex = 0;
-
-// --- LOGIQUE MUSIQUE ---
-const music = document.getElementById('bgMusic');
-const musicIcon = document.getElementById('music-icon');
-const slider = document.getElementById('volumeSlider');
-
-function loadTrack(index) { if (music) { music.src = playlist[index]; music.load(); } }
-
-window.toggleMusic = function() {
-    if (!music) return;
-    if (!music.getAttribute('src')) loadTrack(currentTrackIndex);
-    if (music.paused) { 
-        music.volume = slider ? slider.value : 0.3; 
-        music.play().catch(e => console.log("Lecture bloquée par le navigateur")); 
-        if(musicIcon) musicIcon.innerText = '⏸'; 
-    }
-    else { music.pause(); if(musicIcon) musicIcon.innerText = '▶'; }
-};
-
-window.nextTrack = function() { currentTrackIndex = (currentTrackIndex + 1) % playlist.length; loadTrack(currentTrackIndex); music.play(); };
-window.prevTrack = function() { currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length; loadTrack(currentTrackIndex); music.play(); };
-window.changeVolume = function(v) { if (music) music.volume = v; };
-
-// Liens Externes
-const rulesLinks = {
-    serveur: "https://docs.google.com/document/d/1VKb4eJfoqYuEnPFZy3VIKV6PoWm3KQioFci5E1cw3Xw/edit?usp=sharing",
-    sasp: "https://docs.google.com/document/d/1crPjZrpPJnh5xr65boi8iLPaJLq72QiKrjugdM4gBss/edit?usp=sharing",
-    samr: "https://docs.google.com/document/d/1NX0qZMNN1z72jVv1H4CBPrSq-J1vq3TbG86GYse2ROM/edit?usp=sharing",
-    illegal: "https://docs.google.com/document/d/14vTxocrhfBv-ysWS7h1hYzh0L5YHVKH1nb5oeo1sj_Y/edit?usp=sharing"
-};
-
-const discordLinks = {
-    general: "https://discord.gg/WcenP4vcjY",
-    illegal: "https://discord.gg/YHCWdwgvk7",
-    sasp: "https://discord.gg/bWyGBhChUX",
-    gouv: "https://discord.gg/wxnurk5ZG7",
-    samr: "https://discord.gg/XHQrEpKBTH",
-    immo: "https://discord.gg/cbtWQpqXVj",
-    pdm: "https://discord.gg/2BXxf5fjTy"
-};
-
-const pageData = {
-    lore: `
-        <div style="max-width: 800px; margin: 0 auto; line-height: 1.7; text-align: justify; font-family: 'Rajdhani', sans-serif;">
-            <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; letter-spacing: 3px; text-align: center; margin-bottom: 40px; text-shadow: 0 0 15px rgba(70, 165, 229, 0.4);">
-                L'ÉCHO DU CHILIAD : LA FIN DU MIRAGE
-            </h2>
-            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Tout a commencé par un mirage doré au début des années 2000, quand des milliards de dollars issus de fonds fédéraux "évaporés" ont fait sortir de terre <strong>Last Paradise</strong>, une enclave de luxe qui n'était en réalité qu'un laboratoire social à ciel ouvert pour une cellule grise d'agents renégats du FIB et de l'IAA. Sous le nom de code <strong>"The Styx"</strong>, ces hommes de l'ombre n'étaient pas de simples investisseurs, mais des architectes du chaos qui ont bâti un empire criminel intouchable, avant d'être officiellement traqués par Washington en 2021.
-            </p>
-            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Mais alors que les communiqués annonçaient leur fuite, la réalité de 2026 est devenue un cauchemar éveillé : le Gouverneur actuel a instauré un plan de "Renaissance" d'une violence inouïe, asphyxiant les citoyens sous des taxes et une surveillance paranoïaque pour reconstruire une façade de gloire sur le dos d'une population qui lutte pour sa survie.
-            </p>
-            <p style="font-size: 22px; color: #46a5e5; text-align: center; font-weight: bold; font-style: italic; margin-bottom: 25px;">
-                "Ils ne sont jamais partis."
-            </p>
-            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Pourtant, dans les bas-fonds, cette phrase revient comme un murmure terrifiant que personne n'ose crier. Au nord, autour d'un <strong>Mont Chiliad</strong> bouclé par des restrictions discrètes, l'inquiétude grandit. Des témoins racontent avoir aperçu, dans la pénombre des sentiers escarpés, des silhouettes de miliciens lourdement armés et dépourvus de tout insigne officiel.
-            </p>
-            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 25px;">
-                Des convois anonymes s'engouffrent régulièrement dans les entrailles de la montagne sans laisser de trace, laissant planer l'ombre d'un complot qui dépasse l'entendement. Les services publics tentent de rester proches des citoyens, mais en interne, le doute s'installe. Entre manque d'informations et pression constante, les agents eux-mêmes peinent à comprendre l'ampleur réelle de la situation ou l'identité de ceux qu'ils servent véritablement.
-            </p>
-            <p style="font-size: 19px; color: rgba(255,255,255,0.9); margin-bottom: 40px;">
-                Aujourd'hui, <strong>Los Santos</strong> vit dans un équilibre fragile : au sud, la méfiance envers le système et l'asphyxie économique ; au nord, la peur d'un danger mal identifié nourri par les rumeurs d'un Consortium qui aurait simplement changé de stratégie. Coincés entre ces deux réalités, les habitants avancent avec une seule certitude : quelque chose s'est réveillé sous leurs pieds, et personne ne sait encore quel rôle il est censé jouer dans ce qui arrive.
-            </p>
-            <h3 style="font-family: 'Bebas Neue'; font-size: 35px; color: #f1c40f; text-align: center; letter-spacing: 2px;">MAINTENANT C'EST À VOUS D'ÉCRIRE VOTRE PROPRE HISTOIRE</h3>
-        </div>
-    `,
-    rules: `
-        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">RÈGLEMENTS DU TERRITOIRE</h2>
-        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto;">
-            <div class="list-item-row" style="border-color: #46a5e5;">
-                <div class="text-info"><strong>RÈGLEMENT GÉNÉRAL</strong><span>Bases fondamentales du serveur</span></div>
-                <a href="${rulesLinks.serveur}" target="_blank" class="action-btn" style="background: #46a5e5;">LIRE LE DOC</a>
-            </div>
-            <div class="list-item-row" style="border-color: #2980b9;">
-                <div class="text-info"><strong>RÈGLEMENT SASP</strong><span>Code de conduite des forces de l'ordre</span></div>
-                <a href="${rulesLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9;">LIRE LE DOC</a>
-            </div>
-            <div class="list-item-row" style="border-color: #e74c3c;">
-                <div class="text-info"><strong>RÈGLEMENT SAMR</strong><span>Protocoles médicaux et secours</span></div>
-                <a href="${rulesLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c;">LIRE LE DOC</a>
-            </div>
-            <div class="list-item-row" style="border-color: #9370DB;">
-                <div class="text-info"><strong>RÈGLEMENT ILLÉGAL</strong><span>Activités et groupes criminels</span></div>
-                <a href="${rulesLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB;">LIRE LE DOC</a>
-            </div>
-        </div>
-    `,
-    keys: `
-        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">TOUCHES DU SERVEUR</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto;">
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-                <div class="key-item"><span>Se cacher</span><kbd>A</kbd></div>
-                <div class="key-item"><span>Pointer du doigt / Ceinture</span><kbd>B</kbd></div>
-                <div class="key-item"><span>Champs de vision</span><kbd>C</kbd></div>
-                <div class="key-item"><span>S'asseoir</span><kbd>E</kbd></div>
-                <div class="key-item"><span>Croiser les bras</span><kbd>H</kbd></div>
-                <div class="key-item"><span>Tête / Boîte à gants</span><kbd>K</kbd></div>
-                <div class="key-item"><span>Menu ESC</span><kbd>P</kbd></div>
-                <div class="key-item"><span>Chat InGame</span><kbd>T</kbd></div>
-                <div class="key-item"><span>Véhicule / Tomber</span><kbd>U</kbd></div>
-                <div class="key-item"><span>Vue (1ère/3ème)</span><kbd>V</kbd></div>
-                <div class="key-item"><span>Lever bras / Stop Anim</span><kbd>X</kbd></div>
-                <div class="key-item"><span>Tomber / Se relever</span><kbd>Y</kbd></div>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-                <div class="key-item"><span>Téléphone</span><kbd>F1</kbd></div>
-                <div class="key-item"><span>Menu Animations</span><kbd>F3</kbd></div>
-                <div class="key-item"><span>Menu Personnel</span><kbd>F5</kbd></div>
-                <div class="key-item"><span>Menu Job</span><kbd>F6</kbd></div>
-                <div class="key-item"><span>Menu Vêtements</span><kbd>F7</kbd></div>
-                <div class="key-item"><span>Portée de la voix</span><kbd>F11</kbd></div>
-                <div class="key-item"><span>Capture Steam</span><kbd>F12</kbd></div>
-                <div class="key-item"><span>Inventaire</span><kbd>TAB</kbd></div>
-                <div class="key-item"><span>Interaction</span><kbd>ALT</kbd></div>
-                <div class="key-item"><span>S'accroupir</span><kbd>CTRL G</kbd></div>
-                <div class="key-item"><span>Raccourcis Inventaire</span><kbd>1-5</kbd></div>
-            </div>
-        </div>
-    `,
-    discord: `
-        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">NOS DISCORDS</h2>
-        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto;">
-            <div class="list-item-row" style="border-color: #5865F2;">
-                <div class="text-info"><strong>DISCORD GÉNÉRAL</strong><span>Le cœur de la communauté</span></div>
-                <a href="${discordLinks.general}" target="_blank" class="action-btn" style="background: #5865F2;">REJOINDRE</a>
-            </div>
-            <div class="list-item-row" style="border-color: #9370DB;">
-                <div class="text-info"><strong>DISCORD ILLÉGAL</strong><span>L'ombre de la ville</span></div>
-                <a href="${discordLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB;">REJOINDRE</a>
-            </div>
-            <div class="list-item-row" style="border-color: #2980b9;">
-                <div class="text-info"><strong>DISCORD SASP</strong><span>Forces de l'ordre</span></div>
-                <a href="${discordLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9;">REJOINDRE</a>
-            </div>
-            <div class="list-item-row" style="border-color: #f1c40f;">
-                <div class="text-info"><strong>GOUVERNEMENT</strong><span>Lois et décrets officiels</span></div>
-                <a href="${discordLinks.gouv}" target="_blank" class="action-btn" style="background: #f1c40f; color: #000;">REJOINDRE</a>
-            </div>
-            <div class="list-item-row" style="border-color: #e74c3c;">
-                <div class="text-info"><strong>DISCORD SAMR</strong><span>Santé et Secours</span></div>
-                <a href="${discordLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c;">REJOINDRE</a>
-            </div>
-            <div class="list-item-row" style="border-color: #1abc9c;">
-                <div class="text-info"><strong>DISCORD ENTREPRISES</strong><span>Gestion et demandes pro</span></div>
-                <a href="https://discord.gg/tWEaQbArej" target="_blank" class="action-btn" style="background: #1abc9c;">REJOINDRE</a>
-            </div>
-        </div>
-    `,
-    paradise: `
-        <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">REJOINDRE LAST PARADISE</h2>
-        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto;">
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5;">
-                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;"><strong>1.</strong> Posséder GTA V original sur PC.</p>
-            </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-left: 4px solid #46a5e5;">
-                <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0;"><strong>2.</strong> Installer FiveM.</p>
-            </div>
-            <div onclick="navigator.clipboard.writeText('connect lastparadise.fr'); alert('Adresse copiée !');" style="background: #000; padding: 20px; border-radius: 8px; border: 2px solid #46a5e5; text-align: center; cursor: pointer;">
-                <code style="color: #46a5e5; font-size: 24px; font-weight: bold;">connect lastparadise.fr</code>
-                <p style="color: white; font-size: 12px; margin-top: 5px;">CLIQUEZ POUR COPIER (F8 ensuite)</p>
-            </div>
-        </div>
-    `,
-    staff: `<h2>L'ÉQUIPE ADMINISTRATIVE</h2><div id="roles-container"></div>`,
-    streams: `<h2>DIFFUSIONS EN DIRECT</h2><div id="stream-list"></div>`,
-    galerie: `<h2>ARCHIVES LAST PARADISE V1 (2024)</h2><div id="galerie-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 20px 0;"></div>`,
-    event: `<h2>ÉVÉNEMENTS À VENIR</h2><p style="text-align:center;">Aucun événement prévu pour le moment.</p>`
-};
-
-// --- LOGIQUE D'AFFICHAGE ---
-window.openView = function(id) {
-    const viewer = document.getElementById('viewer');
-    const content = document.getElementById('viewer-content');
-    if (!pageData[id]) return;
-    content.innerHTML = pageData[id];
-    viewer.style.display = 'block';
-
-    if (id === 'galerie') {
-        const container = document.getElementById('galerie-container');
-        container.innerHTML = ""; // Sécurité pour vider le container
-        photosV1.forEach((url, index) => {
-            const item = document.createElement('div');
-            item.style = "border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s;";
-            item.onclick = () => openLightbox(url); // Ajout de l'événement plein écran
-            item.innerHTML = `
-                <img src="${url}" style="width: 100%; height: 180px; object-fit: cover; display: block;">
-                <div style="background: rgba(0,0,0,0.5); padding: 5px; text-align: center; font-size: 12px; color: #46a5e5;">SOUVENIR V1 #${index + 1}</div>
-            `;
-            container.appendChild(item);
-        });
-    }
-
-    if (id === 'staff') {
-        const container = document.getElementById('roles-container');
-        serverRoles.forEach(roleName => {
-            const roleId = roleName.replace(/\s/g, '');
-            const member = staffMembers.find(m => m.highestRole === roleName);
-            let memberHtml = '';
-            if (member) {
-                memberHtml = `
-                    <div id="pseudo-${roleId}" class="pseudo-reveal" onclick="toggleSubRoles('${roleId}')" style="display:none; cursor:pointer; margin-top:10px;">└ ${member.pseudo}</div>
-                    <div id="subroles-${roleId}" class="subroles-list" style="display:none; flex-direction: column; gap: 8px; margin-left: 40px; margin-top: 10px;">
-                        ${member.allRoles.map(r => `<div class="subrole-badge"><span style="background:${r.color}"></span>${r.name.toUpperCase()}</div>`).join('')}
-                    </div>`;
-            }
-            const roleDiv = document.createElement('div');
-            roleDiv.className = "role-item";
-            roleDiv.innerHTML = `<div class="role-header" onclick="togglePseudo('${roleId}')"><span>${roleName.toUpperCase()}</span><span class="indicator">${member ? '▼' : '○'}</span></div>${memberHtml}`;
-            container.appendChild(roleDiv);
-        });
-    }
-
-    if (id === 'streams') {
-        const list = document.getElementById('stream-list');
-        const searchInput = document.createElement('input');
-        searchInput.type = 'text';
-        searchInput.placeholder = 'Rechercher un streamer...';
-        searchInput.style = "width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #46a5e5; background: rgba(0,0,0,0.6); color: white;";
-        const resContainer = document.createElement('div');
-        list.appendChild(searchInput); list.appendChild(resContainer);
-
-        const render = (f = "") => {
-            resContainer.innerHTML = "";
-            [...streamerData].sort((a,b)=>a.streamer.localeCompare(b.streamer)).forEach(s => {
-                if (s.streamer.toLowerCase().includes(f.toLowerCase()) || s.character.toLowerCase().includes(f.toLowerCase())) {
-                    resContainer.innerHTML += `<div class="list-item-row" style="border-color: #6441a5;"><div class="text-info"><strong>${s.streamer}</strong><span>Incarne : ${s.character}</span></div><a href="${s.url}" target="_blank" class="action-btn" style="background: #6441a5;">TWITCH</a></div>`;
-                }
-            });
-        };
-        searchInput.addEventListener('input', (e) => render(e.target.value));
-        render();
-    }
+:root { 
+    --accent: #46a5e5; 
+    --bg-overlay: rgba(0, 0, 0, 0.7); 
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --modal-bg: rgba(10, 5, 20, 0.55);
 }
 
-// --- LOGIQUE PLEIN ÉCRAN (LIGHTBOX) ---
-window.openLightbox = function(url) {
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightbox-img');
-    if (lb && lbImg) {
-        lbImg.src = url;
-        lb.style.display = 'flex';
-    }
-};
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-window.togglePseudo = function(id) { const el = document.getElementById('pseudo-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'block' : 'none'; }
-window.toggleSubRoles = function(id) { const el = document.getElementById('subroles-' + id); if (el) el.style.display = (el.style.display === 'none') ? 'flex' : 'none'; }
-window.closeView = function() { document.getElementById('viewer').style.display = 'none'; }
+body { 
+    background: url('https://i.postimg.cc/Y0sxrY20/Gemini-Generated-Image-d75xq0d75xq0d75x-(1).png') no-repeat;
+    background-position: center 30%; 
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff; 
+    font-family: 'Rajdhani', sans-serif; 
+    overflow: hidden;
+}
+
+.home {
+    background: var(--bg-overlay);
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+}
+
+.grid { 
+    flex: 1;
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(3, 1fr); 
+    gap: 15px; 
+    padding: 20px;
+}
+
+/* --- TUILES --- */
+.tile { 
+    position: relative; 
+    display: flex; 
+    align-items: flex-end; 
+    background: var(--glass);
+    border: 1px solid var(--glass-border); 
+    text-decoration: none; 
+    overflow: hidden; 
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    border-radius: 15px;
+}
+
+.tile:hover { 
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(70, 165, 229, 0.2);
+}
+
+.tile__bg { 
+    position: absolute; 
+    inset: 0; 
+    background-size: cover; 
+    background-position: center; 
+    filter: brightness(0.4) saturate(0.8); 
+    transition: 0.6s; 
+}
+
+.tile:hover .tile__bg { filter: brightness(0.6) saturate(1.1); }
+
+.tile__content { 
+    padding: 35px; 
+    position: relative; 
+    z-index: 2; 
+    width: 100%; 
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+}
+
+.tile__label { 
+    display: block; 
+    font-family: 'Bebas Neue'; 
+    font-size: 50px; 
+    color: var(--accent); 
+    text-shadow: 0 0 20px rgba(70, 165, 229, 0.5);
+    letter-spacing: 3px; 
+    line-height: 0.9;
+    margin-bottom: 5px;
+}
+
+.tile__sub { 
+    font-size: 14px; 
+    color: rgba(255,255,255,0.7); 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+
+/* --- STATUT --- */
+.tile__status { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.tile__dot.online { 
+    width: 10px; 
+    height: 10px; 
+    background: #00ff88; 
+    border-radius: 50%; 
+    box-shadow: 0 0 10px #00ff88;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* --- VIEWER --- */
+.viewer { 
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,0.7); 
+    z-index: 1000; 
+    padding: 40px; 
+    animation: fadeIn 0.4s ease;
+}
+
+.viewer__body { 
+    max-width: 1200px; 
+    width: 70%; 
+    margin: 5vh auto; 
+    background: var(--modal-bg);
+    backdrop-filter: blur(15px) saturate(160%);
+    -webkit-backdrop-filter: blur(15px) saturate(160%);
+    border: 1px solid rgba(68, 221, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(68, 221, 255, 0.2);
+    padding: 45px;
+    color: #f0f0f0;
+    overflow-y: auto;
+    max-height: 85vh;
+    position: relative;
+}
+
+.close-btn { 
+    background: transparent; 
+    border: 1px solid var(--accent); 
+    color: var(--accent); 
+    padding: 12px 35px; 
+    font-family: 'Bebas Neue'; 
+    font-size: 20px;
+    cursor: pointer; 
+    margin-bottom: 40px; 
+    transition: 0.3s;
+    border-radius: 8px;
+}
+
+.close-btn:hover { 
+    background: var(--accent); 
+    color: #000; 
+}
+
+/* --- STAFF & ROLES --- */
+.role-item {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 15px 0;
+}
+
+.role-header {
+    cursor: pointer;
+    font-family: 'Rajdhani';
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.role-header:hover { color: var(--accent); }
+
+.pseudo-reveal {
+    display: none; 
+    color: var(--accent);
+    font-family: 'Bebas Neue';
+    font-size: 26px;
+    margin: 12px 0 8px 25px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    animation: slideDown 0.3s ease;
+}
+
+.subroles-list {
+    display: none; 
+    flex-direction: column;
+    gap: 8px;
+    margin-left: 50px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border-left: 2px solid rgba(70, 165, 229, 0.3);
+    animation: slideDown 0.3s ease;
+}
+
+.subrole-badge {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Rajdhani';
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.subrole-badge span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 12px;
+    box-shadow: 0 0 5px currentColor;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- FOOTER --- */
+.footer {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Rajdhani';
+    font-size: 25px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+}
+
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* --- LECTEUR MUSIQUE --- */
+.ac {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    padding: 8px 12px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.ac:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent);
+}
+
+.ac__toggle {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.ac__toggle:not([style*="width"]) {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 16px !important;
+    border-color: var(--accent) !important;
+}
+
+.ac__toggle[style*="width: 35px"] {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 10px !important;
+    opacity: 0.6;
+}
+
+.ac__toggle:hover {
+    background: var(--accent) !important;
+    color: #000 !important;
+    opacity: 1;
+}
+
+.ac__slider {
+    -webkit-appearance: none;
+    width: 85px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+.ac__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border
