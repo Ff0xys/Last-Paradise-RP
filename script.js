@@ -51,7 +51,7 @@ window.toggleMusic = function() {
     if (!music.getAttribute('src')) loadTrack(currentTrackIndex);
     if (music.paused) { 
         music.volume = slider ? slider.value : 0.3; 
-        music.play().catch(e => console.log("Lecture bloquée")); 
+        music.play().catch(e => console.log("Lecture bloquée par le navigateur")); 
         if(musicIcon) musicIcon.innerText = '⏸'; 
     }
     else { music.pause(); if(musicIcon) musicIcon.innerText = '▶'; }
@@ -104,58 +104,67 @@ const pageData = {
     rules: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px;">RÈGLEMENTS DU TERRITOIRE</h2>
         <div style="display: flex; flex-direction: column; gap: 15px; max-width: 750px; margin: 0 auto;">
-            <div class="list-item-row" style="border-color: #46a5e5; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
-                <div class="text-info"><strong style="color: #46a5e5; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT GÉNÉRAL &nbsp;&nbsp; : &nbsp;&nbsp;</strong><span style="color: rgba(255,255,255,0.7);">Bases fondamentales et vie en communauté.</span></div>
+            <div class="list-item-row" style="border-left: 4px solid #46a5e5; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                <div class="text-info">
+                   <strong style="color: #46a5e5; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT GÉNÉRAL</strong><br>
+                   <span style="color: rgba(255,255,255,0.7);">Bases fondamentales et vie en communauté.</span>
+                </div>
                 <a href="${rulesLinks.serveur}" target="_blank" class="action-btn" style="background: #46a5e5; padding: 12px 25px; border-radius: 5px; color: #000; font-weight: 800; text-decoration: none;">CONSULTER</a>
             </div>
-            <div class="list-item-row" style="border-color: #2980b9; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
-                <div class="text-info"><strong style="color: #2980b9; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT SASP &nbsp;&nbsp; : &nbsp;&nbsp;</strong><span style="color: rgba(255,255,255,0.7);">Code de déontologie des forces de l'ordre.</span></div>
+            <div class="list-item-row" style="border-left: 4px solid #2980b9; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                <div class="text-info">
+                   <strong style="color: #2980b9; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT SASP</strong><br>
+                   <span style="color: rgba(255,255,255,0.7);">Code de déontologie des forces de l'ordre.</span>
+                </div>
                 <a href="${rulesLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9; padding: 12px 25px; border-radius: 5px; color: #fff; font-weight: 800; text-decoration: none;">CONSULTER</a>
             </div>
-            <div class="list-item-row" style="border-color: #e74c3c; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
-                <div class="text-info"><strong style="color: #e74c3c; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT SAMR &nbsp;&nbsp; : &nbsp;&nbsp;</strong><span style="color: rgba(255,255,255,0.7);">Protocoles d'urgence et éthique médicale.</span></div>
+            <div class="list-item-row" style="border-left: 4px solid #e74c3c; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                <div class="text-info">
+                   <strong style="color: #e74c3c; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT SAMR</strong><br>
+                   <span style="color: rgba(255,255,255,0.7);">Protocoles d'urgence et éthique médicale.</span>
+                </div>
                 <a href="${rulesLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c; padding: 12px 25px; border-radius: 5px; color: #fff; font-weight: 800; text-decoration: none;">CONSULTER</a>
             </div>
-            <div class="list-item-row" style="border-color: #9370DB; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
-                <div class="text-info"><strong style="color: #9370DB; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT ILLÉGAL &nbsp;&nbsp; : &nbsp;&nbsp;</strong><span style="color: rgba(255,255,255,0.7);">Règles concernant les activités criminelles.</span></div>
+            <div class="list-item-row" style="border-left: 4px solid #9370DB; display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px;">
+                <div class="text-info">
+                   <strong style="color: #9370DB; font-size: 18px; letter-spacing: 1px;">RÈGLEMENT ILLÉGAL</strong><br>
+                   <span style="color: rgba(255,255,255,0.7);">Règles concernant les activités criminelles.</span>
+                </div>
                 <a href="${rulesLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB; padding: 12px 25px; border-radius: 5px; color: #fff; font-weight: 800; text-decoration: none;">CONSULTER</a>
             </div>
         </div>
     `,
     keys: `
         <h2 style="font-family: 'Bebas Neue'; font-size: 50px; color: #46a5e5; text-align: center; margin-bottom: 30px; letter-spacing: 2px;">TOUCHES DU SERVEUR</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; font-family: 'Rajdhani', sans-serif;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
             
-            <div style="display: flex; flex-direction: column; gap: 14px;">
-                <div class="key-item"><span><strong>Se cacher</strong></span> &nbsp; : &nbsp; <kbd><strong>A</strong></kbd></div>
-                <div class="key-item"><span><strong>Pointer du doigt / Ceinture</strong></span> &nbsp; : &nbsp; <kbd><strong>B</strong></kbd></div>
-                <div class="key-item"><span><strong>Champs de vision</strong></span> &nbsp; : &nbsp; <kbd><strong>C</strong></kbd></div>
-                <div class="key-item"><span><strong>S'asseoir</strong></span> &nbsp; : &nbsp; <kbd><strong>E</strong></kbd></div>
-                <div class="key-item"><span><strong>Croiser les bras</strong></span> &nbsp; : &nbsp; <kbd><strong>H</strong></kbd></div>
-                <div class="key-item"><span><strong>Tête / Boîte à gants</strong></span> &nbsp; : &nbsp; <kbd><strong>K</strong></kbd></div>
-                <div class="key-item"><span><strong>Menu ESC</strong></span> &nbsp; : &nbsp; <kbd><strong>P</strong></kbd></div>
-                <div class="key-item"><span><strong>Chat InGame</strong></span> &nbsp; : &nbsp; <kbd><strong>T</strong></kbd></div>
-                <div class="key-item"><span><strong>Véhicule / Tomber</strong></span> &nbsp; : &nbsp; <kbd><strong>U</strong></kbd></div>
-                <div class="key-item"><span><strong>1ère / 3ème personne</strong></span> &nbsp; : &nbsp; <kbd><strong>V</strong></kbd></div>
-                <div class="key-item"><span><strong>Lever bras / Stop Anim</strong></span> &nbsp; : &nbsp; <kbd><strong>X</strong></kbd></div>
-                <div class="key-item"><span><strong>Tomber / Se relever</strong></span> &nbsp; : &nbsp; <kbd><strong>Y</strong></kbd></div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="key-item"><span>Se cacher</span><kbd>A</kbd></div>
+                <div class="key-item"><span>Pointer du doigt / Ceinture</span><kbd>B</kbd></div>
+                <div class="key-item"><span>Champs de vision</span><kbd>C</kbd></div>
+                <div class="key-item"><span>S'asseoir</span><kbd>E</kbd></div>
+                <div class="key-item"><span>Croiser les bras</span><kbd>H</kbd></div>
+                <div class="key-item"><span>Tête / Boîte à gants</span><kbd>K</kbd></div>
+                <div class="key-item"><span>Menu ESC</span><kbd>P</kbd></div>
+                <div class="key-item"><span>Chat InGame</span><kbd>T</kbd></div>
+                <div class="key-item"><span>Véhicule / Tomber</span><kbd>U</kbd></div>
+                <div class="key-item"><span>1ère / 3ème personne</span><kbd>V</kbd></div>
+                <div class="key-item"><span>Lever bras / Stop Anim</span><kbd>X</kbd></div>
+                <div class="key-item"><span>Tomber / Se relever</span><kbd>Y</kbd></div>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 14px;">
-                <div class="key-item"><span><strong>Téléphone</strong></span> &nbsp; : &nbsp; <kbd><strong>F1</strong></kbd></div>
-                <div class="key-item"><span><strong>Menu animations</strong></span> &nbsp; : &nbsp; <kbd><strong>F3</strong></kbd></div>
-                <div class="key-item"><span><strong>Menu personnel (Licences...)</strong></span> &nbsp; : &nbsp; <kbd><strong>F5</strong></kbd></div>
-                <div class="key-item"><span><strong>Menu Job</strong></span> &nbsp; : &nbsp; <kbd><strong>F6</strong></kbd></div>
-                <div class="key-item"><span><strong>Menu vêtements</strong></span> &nbsp; : &nbsp; <kbd><strong>F7</strong></kbd></div>
-                <div class="key-item"><span><strong>Portée de la voix</strong></span> &nbsp; : &nbsp; <kbd><strong>F11</strong></kbd></div>
-                <div class="key-item"><span><strong>Capture d'écran Steam</strong></span> &nbsp; : &nbsp; <kbd><strong>F12</strong></kbd></div>
-                
-                <div style="height: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 5px;"></div>
-                
-                <div class="key-item"><span><strong>Raccourcis inventaire</strong></span> &nbsp; : &nbsp; <kbd><strong>1 - 2 - 3 - 4 - 5</strong></kbd></div>
-                <div class="key-item"><span><strong>Interaction (Objets/Persos)</strong></span> &nbsp; : &nbsp; <kbd><strong>ALT</strong></kbd></div>
-                <div class="key-item"><span><strong>S'accroupir</strong></span> &nbsp; : &nbsp; <kbd><strong>CTRL G</strong></kbd></div>
-                <div class="key-item"><span><strong>Inventaire</strong></span> &nbsp; : &nbsp; <kbd><strong>TAB</strong></kbd></div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="key-item"><span>Téléphone</span><kbd>F1</kbd></div>
+                <div class="key-item"><span>Menu animations</span><kbd>F3</kbd></div>
+                <div class="key-item"><span>Menu personnel (Licences...)</span><kbd>F5</kbd></div>
+                <div class="key-item"><span>Menu Job</span><kbd>F6</kbd></div>
+                <div class="key-item"><span>Menu vêtements</span><kbd>F7</kbd></div>
+                <div class="key-item"><span>Portée de la voix</span><kbd>F11</kbd></div>
+                <div class="key-item"><span>Capture Steam</span><kbd>F12</kbd></div>
+                <div class="key-item"><span>Raccourcis inventaire</span><kbd>1 - 5</kbd></div>
+                <div class="key-item"><span>Interaction</span><kbd>ALT</kbd></div>
+                <div class="key-item"><span>S'accroupir</span><kbd>CTRL G</kbd></div>
+                <div class="key-item"><span>Inventaire</span><kbd>TAB</kbd></div>
             </div>
         </div>
     `,
@@ -164,56 +173,56 @@ const pageData = {
         <div style="display: flex; flex-direction: column; gap: 12px; max-width: 800px; margin: 0 auto;">
             
             <div class="list-item-row" style="border-left: 4px solid #5865F2; background: rgba(88,101,242,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
-                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
-                    <strong style="font-size: 20px; color: #fff;">DISCORD GÉNÉRAL</strong>
+                <div class="text-info">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD GÉNÉRAL</strong><br>
                     <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Le cœur de la communauté et les annonces.</span>
                 </div>
                 <a href="${discordLinks.general}" target="_blank" class="action-btn" style="background: #5865F2; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
 
             <div class="list-item-row" style="border-left: 4px solid #2980b9; background: rgba(41,128,185,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
-                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
-                    <strong style="font-size: 20px; color: #fff;">DISCORD SASP</strong>
+                <div class="text-info">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD SASP</strong><br>
                     <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Recrutements et informations forces de l'ordre.</span>
                 </div>
                 <a href="${discordLinks.sasp}" target="_blank" class="action-btn" style="background: #2980b9; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
 
             <div class="list-item-row" style="border-left: 4px solid #e74c3c; background: rgba(231,76,60,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
-                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
-                    <strong style="font-size: 20px; color: #fff;">DISCORD SAMR</strong>
+                <div class="text-info">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD SAMR</strong><br>
                     <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Protocoles et recrutements médicaux.</span>
                 </div>
                 <a href="${discordLinks.samr}" target="_blank" class="action-btn" style="background: #e74c3c; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
 
             <div class="list-item-row" style="border-left: 4px solid #9370DB; background: rgba(147,112,219,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
-                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
-                    <strong style="font-size: 20px; color: #fff;">DISCORD ILLÉGAL</strong>
+                <div class="text-info">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD ILLÉGAL</strong><br>
                     <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Gestion des dossiers et activités criminelles.</span>
                 </div>
                 <a href="${discordLinks.illegal}" target="_blank" class="action-btn" style="background: #9370DB; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
 
             <div class="list-item-row" style="border-left: 4px solid #f1c40f; background: rgba(241,196,15,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
-                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
-                    <strong style="font-size: 20px; color: #fff;">DISCORD GOUVERNEMENT</strong>
+                <div class="text-info">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD GOUVERNEMENT</strong><br>
                     <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Justice et services publics de l'État.</span>
                 </div>
                 <a href="${discordLinks.gouv}" target="_blank" class="action-btn" style="background: #f1c40f; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: #000; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
 
             <div class="list-item-row" style="border-left: 4px solid #27ae60; background: rgba(39,174,96,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
-                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
-                    <strong style="font-size: 20px; color: #fff;">DISCORD IMMOBILIER</strong>
+                <div class="text-info">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD IMMOBILIER</strong><br>
                     <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Gestion des propriétés (Dynasty 8).</span>
                 </div>
                 <a href="${discordLinks.immo}" target="_blank" class="action-btn" style="background: #27ae60; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
             </div>
 
             <div class="list-item-row" style="border-left: 4px solid #e67e22; background: rgba(230,126,34,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; border-radius: 5px;">
-                <div class="text-info" style="display: flex; flex-direction: column; gap: 5px;">
-                    <strong style="font-size: 20px; color: #fff;">DISCORD PDM</strong>
+                <div class="text-info">
+                    <strong style="font-size: 20px; color: #fff;">DISCORD PDM</strong><br>
                     <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Vente de véhicules et catalogues.</span>
                 </div>
                 <a href="${discordLinks.pdm}" target="_blank" class="action-btn" style="background: #e67e22; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px;">REJOINDRE</a>
@@ -274,8 +283,8 @@ window.openView = function(id) {
                 if (s.streamer.toLowerCase().includes(f.toLowerCase()) || s.character.toLowerCase().includes(f.toLowerCase())) {
                     resContainer.innerHTML += `
                     <div class="list-item-row" style="border-left: 4px solid #6441a5; background: rgba(100,65,165,0.05); display: flex; justify-content: space-between; align-items: center; padding: 20px; margin-bottom: 10px; border-radius: 5px;">
-                        <div class="text-info" style="display: flex; flex-direction: column; gap: 8px;">
-                            <strong style="font-size: 22px; color: #fff;">${s.streamer}</strong>
+                        <div class="text-info">
+                            <strong style="font-size: 22px; color: #fff;">${s.streamer}</strong><br>
                             <span style="color: rgba(255,255,255,0.6); font-size: 16px;">Incarne &nbsp;&nbsp; : &nbsp;&nbsp; <b style="color: #46a5e5;">${s.character}</b></span>
                         </div>
                         <a href="${s.url}" target="_blank" class="action-btn" style="background: #6441a5; padding: 12px 30px; border-radius: 4px; text-decoration: none; color: white; font-weight: 900; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">TWITCH</a>
