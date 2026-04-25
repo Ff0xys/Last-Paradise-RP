@@ -1,6 +1,6 @@
 // --- CONFIGURATION ---
 const streamerData = [
-    { streamer: "tv_lyx", character: "Salvatore Morales", url: "https://twitch.tv/tv_lyx" }
+    { streamer: "tv_lyx", character: "Salva Morales", url: "https://twitch.tv/tv_lyx" }
 ];
 
 // Ton lien direct Postimg
