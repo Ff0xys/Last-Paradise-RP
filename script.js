@@ -8,7 +8,7 @@ const myPP = "https://i.postimg.cc/rp7zcCtD/lyx-pp-twitch.jpg";
 
 const staffMembers = [
     { 
-        pseudo: "LYX_TV", 
+        pseudo: "Lyx_tv", 
         roles: [
             { name: "Fondateur", color: "#e74c3c" },
             { name: "Développeur", color: "#2ecc71" },
